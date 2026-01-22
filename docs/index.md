@@ -6,4 +6,8 @@ nav_exclude: true
 
 # Manifold Tech
 
-Welcome to Manfiold Tech Wiki!
+Welcome to Manifold Tech Wiki!
+
+![](Odin1/assets/img/index_picture.png) 
+
+

@@ -4,7 +4,7 @@ remote_theme: ManifoldTehLtd/wiki
 
 # Theme settings:
 site_author: Manifold Tech
-repo_url: "https://github.com/ManifoldTehLtd/wiki"
+repo_url: "https://github.com/ManifoldTechLtd/wiki"
 edit_on_github: true
 github_docs_folder: true
 sticky_navigation: true
