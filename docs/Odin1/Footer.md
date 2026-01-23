@@ -7,33 +7,49 @@ search_exclude: true  # 从搜索中排除
 #  关注我们
 
 ## 获取最新动态资讯
-<div align="center">
 
-<div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 30px 0;">
+## 关注我们
 
-<div style="text-align: center;">
-<img src="assets/img/manifold_account.jpg" alt="留形科技公众号" width="180" height="180" style="object-fit:contain;">
-<p><strong>留形科技公众号</strong>
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 500px; margin: 40px auto; text-align: center;">
+
+  <div>
+    <img src="assets/img/manifold_account.jpg"
+         alt="留形科技公众号"
+         width="180"
+         height="180"
+         style="object-fit: contain;">
+    <p><strong>留形科技公众号</strong></p>
+  </div>
+
+  <div>
+    <img src="assets/img/channel.jpg"
+         alt="案例视频号"
+         width="180"
+         height="180"
+         style="object-fit: contain;">
+    <p><strong>案例视频号</strong></p>
+  </div>
+
+  <div>
+    <img src="assets/img/xiaoshongshu.jpg"
+         alt="小红书"
+         width="180"
+         height="180"
+         style="object-fit: contain;">
+    <p><strong>小红书</strong></p>
+  </div>
+
+  <div>
+    <img src="assets/img/bilibili.jpg"
+         alt="bilibili"
+         width="180"
+         height="180"
+         style="object-fit: contain;">
+    <p><strong>Bilibili</strong></p>
+  </div>
+
 </div>
 
-<div style="text-align: center;">
-<img src="assets/img/channel.jpg" alt="留形科技应用案例视频号" width="180" height="180" style="object-fit:contain;">
-<p><strong>案例视频号</strong>
-</div>
-
-<div style="text-align: center;">
-<img src="assets/img/xiaoshongshu.jpg" alt="小红书公众号" width="180" height="180" style="object-fit:contain;">
-<p><strong>小红书</strong>
-</div>
-
-
-<div style="text-align: center;">
-<img src="assets/img/bilibili.jpg" alt="bilibili" width="180" height="180" style="object-fit:contain;">
-<p><strong>bilibili</strong>
-</div>
-
-</div>
-</div>
 
 
 ## 扫码步骤
@@ -50,6 +66,8 @@ search_exclude: true  # 从搜索中排除
 <div align="center">
 
 {{ site.time | date: "%Y-%m-%d" }}
+
+</div>
 
 
 
