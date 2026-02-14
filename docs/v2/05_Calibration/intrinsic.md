@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 15. 内参说明
-nav_order: 16
+title: 14. 内参说明
+nav_order: 15
 ---
 
 # 15. 内参说明

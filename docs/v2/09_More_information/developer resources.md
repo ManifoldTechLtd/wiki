@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 开发者支持
-nav_order: 21
+nav_order: 20
 ---
 
 # 文档指引

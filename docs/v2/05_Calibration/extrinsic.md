@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 14.外参说明
-nav_order: 15
+title: 13.外参说明
+nav_order: 14
 ---
 
 # 14. 外参符号说明

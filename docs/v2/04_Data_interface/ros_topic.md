@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 11.ROS topic 
-nav_order: 12
+title: 10.ROS topic 
+nav_order: 11
 ---
 
 # 11. ROS topics
@@ -26,14 +26,15 @@ Internal parameters of the Odin ROS driver are defined in config/control_command
 | odin1/reprojected_image       | sendreprojection  | Reprojected cloud to image Topic. Projects cloud_slam to camera image using odometry. Processed on host device. |
 
 ## 11.2 Odin1其他功能描述
-|control_command.yaml   | Detailed Description |
-|-----------------------|----------------------|
-| use_host_ros_time     | Time synchronization mode: 0 - use odin internal system time as data timestamp (typical and recommended); 1 - use host ROS time upon receive (not recommended for most users); 2 - align odin1 time to host time via NTP-like synchronization, timestamp is the sensor data reception time on host time axis. |
-| strict_usb3.0_check   | Strict USB3.0 check, if off, allow connection even if usb connection is below usb 3.0 |
-| recorddata            | Record data in specific format that can be imported into MindCloud(TM) for post-processing. Please be aware that this will consume a lot of storage space. Testing shows 9.5G for 10mins of data. |
-| devstatuslog          | Device status logging, currently save device status (soc temperature, cpu usage, ram usage, dtof sensor temp .etc) and data tx & rx rate to devstatus.csv under log folder. A new file will be created every time the driver is started. |
-| showcamerapose        | Display Camera Pose and Field of View. |
-| custom_map_mode        | Operation Modes: Mode 0 - Odometry mode: The map frame and odom frame share the same pose. Mode 1 - Mapping (with loop closure) mode: This mode supports map saving. Mode 2 - Relocalization mode: Requires specifying the absolute path to the map file. After successful relocalization, it will output the TF relationship between the map and odom frames.|
-| custom_init_pos        | Initialization Position (currently unused). |
-| relocalization_map_abs_path        | Absolute Path to Map File: Used for relocalization mode. |
-| mapping_result_dest_dir and mapping_result_file_name| Path and Name for Saving Maps in Mapping Mode: If not specified, default values will be used. |
+
+| control_command.yaml | Detailed Description |
+|---------------------|--------------------|
+| use_host_ros_time | Time synchronization mode:<br>0 - use odin internal system time as data timestamp (typical and recommended)<br>1 - use host ROS time upon receive (not recommended for most users)<br>2 - align odin1 time to host time via NTP-like synchronization, timestamp is the sensor data reception time on host time axis. |
+| strict_usb3.0_check | Strict USB3.0 check, if off, allow connection even if usb connection is below usb 3.0 |
+| recorddata | Record data in specific format that can be imported into MindCloud(TM) for post-processing.<br>Please be aware that this will consume a lot of storage space. Testing shows 9.5G for 10 mins of data. |
+| devstatuslog | Device status logging, currently saves device status (soc temperature, cpu usage, ram usage, dtof sensor temp, etc.) and data tx & rx rate to devstatus.csv under log folder.<br>A new file will be created every time the driver is started. |
+| showcamerapose | Display Camera Pose and Field of View. |
+| custom_map_mode | Operation Modes:<br>Mode 0 - Odometry mode: The map frame and odom frame share the same pose.<br>Mode 1 - Mapping (with loop closure) mode: This mode supports map saving.<br>Mode 2 - Relocalization mode: Requires specifying the absolute path to the map file.<br>After successful relocalization, it will output the TF relationship between the map and odom frames. |
+| custom_init_pos | Initialization Position (currently unused). |
+| relocalization_map_abs_path | Absolute Path to Map File: Used for relocalization mode. |
+| mapping_result_dest_dir and mapping_result_file_name | Path and Name for Saving Maps in Mapping Mode: If not specified, default values will be used. |

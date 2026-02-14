@@ -101,8 +101,8 @@ cd ~/catkin_ws/src/odin_ros_driver
 # 等待驱动终端提示保存完成后再结束驱动
 ```
 |终端视图|save_map|保存结果|
-| :-: | :-: | :-: |
-|![](../assets/img/terminal_view1.png)|![](../assets/img/save_map.png)| ![](../assets/img/bin.png)
+| :---: | :---: | :---: |
+|![](../assets/img/terminal_view1.png)|![](../assets/img/save_map.png)| ![](../assets/img/bin.png)|
 
 ### 9.3.5 直接从Odin slam模式获取的.bin文件转.pcd文件
 
