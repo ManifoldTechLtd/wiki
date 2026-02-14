@@ -100,17 +100,20 @@ cd ~/catkin_ws/src/odin_ros_driver
 ./set_param.sh save_map 1
 # 等待驱动终端提示保存完成后再结束驱动
 ```
+
 |终端视图|save_map|保存结果|
 | :---: | :---: | :---: |
-|![](../assets/img/terminal_view1.png)|![](../assets/img/save_map.png)| ![](../assets/img/bin.png)|
+|![终端视图](../assets/img/terminal_view1.png)|![map](../assets/img/save_map.png)| ![result](../assets/img/bin.png)|
 
 ### 9.3.5 直接从Odin slam模式获取的.bin文件转.pcd文件
 
 借助MindCloud软件将.bin文件转成.pcd文件
+
 ![bin_to_pcd](../assets/img/bin_to_pcd.png)
 
 ### *9.3.6 rviz显示pcd底图
 - 将方案1、2、3获取到的pcd点云地图进行抽稀，建议控制在10~20M的大小（用户需自行写代码实现）；
 - 用户自行书写ros发布节点，将抽稀后的pcd文件在ros中发布；
 - 成功后可看到结果如下：
+
 ![地图显示](../assets/img/show_pcd.png)
