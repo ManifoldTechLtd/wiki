@@ -1,3 +1,9 @@
+---
+layout: default
+tile: 目录
+nav_order: 1
+---
+
 # Odin Platform Technical Manual (v2)
 
 Welcome to the Odin Platform documentation.
@@ -9,52 +15,65 @@ and integration guidelines for all Odin series products.
 
 ## 📦 Products
 
-- [Odin1](products/odin1.md)
+- [Odin1](./01_Product_overview/Odin1.md)
 
 ---
 
 ## 🧩 Hardware
 
-- [Mechanical Description](hardware/mechanical.md)
-- [Power Specification](hardware/power.md)
-- [Interface Definition](hardware/interface.md)
+- [Mechanical Description](./02_Hardware_installation/mechanical.md)
+- [Power Specification](./02_Hardware_installation/power.md)
+- [Interface Definition](./02_Hardware_installation/interface.md)
 
 ---
 
 ## 💻 Software
 
-- [Driver Installation](software/driver_installation.md)
-- [Quick Start Guide](software/quick_start.md)
-- [Firmware Update](software/firmware_update.md)
+- [Configuration](./03_Software_quick_start/configuration.md)
+- [Driver Installation](./03_Software_quick_start/driver_installation.md)
+- [Quick Start Guide](./03_Software_quick_start/quick_start.md)
+- [Firmware Update](./03_Software_quick_start/firmware_update.md)
+- [Relocalization User Guide](./03_Software_quick_start/relocalization_usr_manual.md)
 
 ---
 
 ## 📡 Data Interface
 
-- [ROS Topics](data_interface/ros_topics.md)
-- [Message Format](data_interface/message_format.md)
-- [Timestamp Definition](data_interface/timestamp.md)
+- [ROS Topics](./04_Data_interface/ros_topic.md)
+- [Message Format](./04_Data_interface/massage_format.md)
 
 ---
 
 ## 📐 Calibration
 
-- [Coordinate Definition](calibration/coordinate_definition.md)
-- [Extrinsic Parameters](calibration/extrinsic.md)
-- [Intrinsic Parameters](calibration/intrinsic.md)
+- [Coordinate Definition](./05_Calibration/coordinate_definition.md)
+- [Extrinsic Parameters](./05_Calibration/extrinsic.md)
+- [Intrinsic Parameters](./05_Calibration/intrinsic.md)
 
 ---
 
 ## 🔧 Maintenance
 
-- [Troubleshooting](maintenance/troubleshooting.md)
-- [FAQ](maintenance/faq.md)
+- [Troubleshooting](./06_Maintenance/troubleshooting.md)
+- [FAQ](./06_Maintenance/FAQ.md)
 
 ---
 
-## 📊 Specifications
+## 🤝 Application Examples
 
-- [Technical Specifications](specifications/specification_table.md)
+- [Examples](./07_Application_examples/application_examples.md)
+
+---
+
+## 📊 Release Infomation
+
+- [Realease_notes](./08_Release_notes/v2_0.md)
+
+---
+
+## 📞 More Information
+- [Community](./09_More_information/cantact_us.md)
+- [Developer_resources](./09_More_information/developer%20resources.md)
 
 ---
 

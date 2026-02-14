@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 安装指南
-nav_order: 5
+title: 3.安装指南
+nav_order: 4
 ---
 
 # 3. 安装指南
@@ -39,7 +39,7 @@ Odin1的底部有4个安装孔位+4个散热风扇安装孔位和侧部4个安�
 
 |背部|底部|
 | :-: | :-: |
-|![](assets/img/22.png)|![](assets/img/23.png)|
+|![](../assets/img/22.png)|![](../assets/img/23.png)|
 
 有效视场角（FOV）范围：
 
@@ -47,4 +47,4 @@ Odin1的深度FOV为大约120°H × 90°V，如下图所示。安装时请注意
 
 |TX|RX|rgb|
 | :-: | :-: | :-: |
-|![](assets/img/16.png)|![](assets/img/15.png)|![](assets/img/14.png)|
+|![](../assets/img/16.png)|![](../assets/img/15.png)|![](../assets/img/14.png)|

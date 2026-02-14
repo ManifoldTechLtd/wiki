@@ -2,6 +2,7 @@
 layout: default
 title: "联系+关注我们"
 search_exclude: true  # 从搜索中排除
+nav_order: 22
 ---
 
 #  关注我们
@@ -12,7 +13,7 @@ search_exclude: true  # 从搜索中排除
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 500px; margin: 40px auto; text-align: center;">
 
   <div>
-    <img src="assets/img/manifold_account.jpg"
+    <img src="../assets/img/manifold_account.jpg"
          alt="留形科技公众号"
          width="180"
          height="180"
@@ -21,7 +22,7 @@ search_exclude: true  # 从搜索中排除
   </div>
 
   <div>
-    <img src="assets/img/channel.jpg"
+    <img src="../assets/img/channel.jpg"
          alt="案例视频号"
          width="180"
          height="180"
@@ -30,7 +31,7 @@ search_exclude: true  # 从搜索中排除
   </div>
 
   <div>
-    <img src="assets/img/xiaoshongshu.jpg"
+    <img src="../assets/img/xiaoshongshu.jpg"
          alt="小红书"
          width="180"
          height="180"
@@ -39,7 +40,7 @@ search_exclude: true  # 从搜索中排除
   </div>
 
   <div>
-    <img src="assets/img/bilibili.jpg"
+    <img src="../assets/img/bilibili.jpg"
          alt="bilibili"
          width="180"
          height="180"

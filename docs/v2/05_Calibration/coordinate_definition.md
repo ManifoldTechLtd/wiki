@@ -1,68 +1,16 @@
 ---
 layout: default
-title: 数据输出
-nav_order: 7
+title: 13.数据输出
+nav_order: 14
 ---
 
-# 5. 数据输出
+# 13. 数据输出
 
-## 5.1 坐标系定义
+## 13.1 Odin1
+### 13.1.1 坐标系定义
 
 Odin 1直角坐标的定义如下图所示，**I** 为imu坐标系，**L**为点云坐标系， **C**为相机坐标系。
 
-![坐标系示意](assets/img/coordinate.png)
-![尺寸示意](assets/img/structure2.png)
-![原点示意](assets/img/structure1.png)
-
-## 5.2 外参描述
-
-### 外参符号说明
-
-下面使用 $$\mathbf{T}^{\text{A}}_{\text{B}}$$ 来表示坐标转换，具体含义为:
-
-$$
-\mathbf{P}_{\text{A}} = \mathbf{T}^{\text{A}}_{\text{B}} \cdot \mathbf{P}_{\text{B}}
-$$
-
-其中 $$P_A$$ 和 $$P_B$$ 分别表示物体在A坐标系和B坐标系下坐标。
-
-### Camera - LiDAR
-
-外参 $$\mathbf{T}^{\text{camera}}_{\text{lidar}}$$  不同机器存在差异，请在驱动程序启动后，在config/calib.yaml获取（Tcl_0），具体信息请查看驱动。
-
-### IMU - LiDAR
-
-外参 $$\mathbf{T}^{\text{imu}}_{\text{lidar}}$$  是固定值，数值如下：
-
-$$
-\mathbf{T}^{\text{imu}}_{\text{lidar}} =
-\begin{bmatrix}
-1 & 0 & 0 & -0.02663 \\
-0 & 1 & 0 & 0.03447 \\
-0 & 0 & 1 & 0.02174 \\
-0      & 0      & 0      & 1
-\end{bmatrix}
-$$
-
-### 其它
-
-- 如果需要 Camera 到 IMU 的外参，请根据上述自行计算。
-
-
-## 5.3 数据说明
-- raw point cloud(odin1/cloud_raw) has the following fields:
-```shell
-float32 x             // X axis, in meters
-float32 y             // Y axis, in meters
-float32 z             // Z axis, in meters
-uint8  intensity      // Reflectivity, range 0–255
-uint16 confidence     // Point confidence, actual value range from 0 to around 1300 in typical scene, higher value means more reliable. Recommanded filtering threshold is 30-35, should be adjusted accordingly.
-float32 offset_time   // Time offset relative to the base timestamp unit: s 
-```
-
-
-## 5.4 数据输出类型及 ROS Driver 获取链接
-
-<a href="https://github.com/manifoldsdk/odin_ros_driver" target="_blank" rel="noopener noreferrer">
-  github.com/manifoldsdk/odin_ros_driver
-</a>
+![坐标系示意](../assets/img/coordinate.png)
+![尺寸示意](../assets/img/structure2.png)
+![原点示意](../assets/img/structure1.png)

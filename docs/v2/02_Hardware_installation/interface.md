@@ -1,13 +1,14 @@
 ---
 layout: default
-title: 硬件说明
+title: 2.硬件说明
+nav_order: 3
 ---
 
 # 2. 硬件说明
 
 ## 2.1 物理接口
 
-![](assets/img/17.png)
+![](../assets/img/17.png)
 
 | 序号 | 接口类型 | 线缆型号 | 功能描述 |
 | :-: |:-: |:-: | :--: |
@@ -17,7 +18,7 @@ title: 硬件说明
 ## 2.2 接口定义
 
 
-![](assets/img/18.png){:width="30%"}
+![](../assets/img/18.png)
 
 | 四芯航空插座管脚 | 信号   | 属性  | 描述 | 线束颜色 | 功能 |
 | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -28,7 +29,7 @@ title: 硬件说明
 
 ## 2.3 核心部件
 
-![](assets/img/19.png)
+![](../assets/img/19.png)
 
 | 序号 | 部件 |
 | :-: | :-: |
@@ -38,4 +39,4 @@ title: 硬件说明
 
 ## 2.4 数模文件
 
-- [下载 Odin1 数模文件（stp）](assets/stp/Odin1.stp)
+- [下载 Odin1 数模文件（stp）](../assets/stp/Odin1.stp)

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: 电源与连接
-nav_order: 6
+title: 4.电源与连接
+nav_order: 5
 ---
 
 # 4. 电源与连接
@@ -36,4 +36,4 @@ nav_order: 6
 
 * 通过航空插头连接电源
 * 连接USB到主机-PC（数据传输）
-* 上电自检
+* 上电自检，设备显示红灯
