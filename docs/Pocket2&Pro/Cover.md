@@ -8,10 +8,9 @@ nav_order: 1
 
 | 版本号 | 修改日期 | 更新内容 |
 | :---: | :---:  | :---|
-| v0.0.1  | 2025.12  | 初版 |
-| v0.0.6  | 2026.2 | 适配0.0.14固件、0.6.0版本APP |
+| v0.1.1  | 2025.12  | 初版 |
+| v0.1.4  | 2026.02 | 适配0.0.14固件、0.6.0版本APP |
 
-
-
-![](assets/img/Q9000model.png)
-
+- [Pocket2&Pro 用户手册](assets/pdf/Pocket 2 & PRO 用户手册_CN_V0.1.4.pdf)
+- [Pocket2&Pro User Manual](assets/pdf/Pocket 2 & PRO User Manual_EN_V0.1.4)
+- [Pocket2&Pro ユーザーマニュアル](assets/pdf/Pocket 2 & PRO ユーザーマニュアル_JP_V0.1.4.pdf)
