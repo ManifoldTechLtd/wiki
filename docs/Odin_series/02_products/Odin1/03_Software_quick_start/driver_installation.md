@@ -1,6 +1,6 @@
 ---
 title: 驱动安装
-parent: Odin1
+parent: 快速启动
 nav_order: 2
 ---
 

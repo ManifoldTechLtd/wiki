@@ -1,7 +1,7 @@
 ---
 title: "联系+关注我们"
 search_exclude: true  # 从搜索中排除
-parent: Odin1
+parent: 更多信息
 nav_order: 1
 ---
 

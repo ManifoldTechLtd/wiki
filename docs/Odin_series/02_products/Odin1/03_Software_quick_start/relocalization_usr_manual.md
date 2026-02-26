@@ -1,6 +1,6 @@
 ---
 title: Odin1重定位功能
-parent: Odin1
+parent: 快速启动
 nav_order: 5
 ---
 

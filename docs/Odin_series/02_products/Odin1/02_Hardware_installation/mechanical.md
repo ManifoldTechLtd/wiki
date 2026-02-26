@@ -1,6 +1,6 @@
 ---
 title: 安装指南
-parent: Odin1
+parent: 硬件安装
 nav_order: 2
 ---
 

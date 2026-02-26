@@ -1,6 +1,6 @@
 ---
 title: Odin1固件升级
-parent: Odin1
+parent: 快速启动
 nav_order: 3
 ---
 

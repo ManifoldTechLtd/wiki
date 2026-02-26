@@ -1,5 +1,5 @@
 ---
 title: 常见问题 FAQ
-parent: Odin1
+parent: 维护
 nav_order: 1
 ---

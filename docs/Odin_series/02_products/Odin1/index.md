@@ -1,6 +1,6 @@
 ---
 title: Odin1
-parent: Odin Series
+parent: Odin系列产品
 nav_order: 1
 has_children: true
 ---

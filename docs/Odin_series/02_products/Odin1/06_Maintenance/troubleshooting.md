@@ -1,5 +1,5 @@
 ---
 title: 故障排查
-parent: Odin1
+parent: 维护
 nav_order: 2
 ---

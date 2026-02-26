@@ -1,6 +1,6 @@
 ---
 title: 消息格式说明
-parent: Odin1
+parent: 数据接口
 nav_order: 1
 ---
 

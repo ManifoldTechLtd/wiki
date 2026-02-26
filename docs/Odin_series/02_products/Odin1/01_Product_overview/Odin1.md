@@ -1,6 +1,6 @@
 ---
 title: Odin1产品手册
-parent: Odin1
+parent: 产品概览
 nav_order: 1
 ---
 

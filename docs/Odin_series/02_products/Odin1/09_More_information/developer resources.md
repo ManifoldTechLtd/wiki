@@ -1,6 +1,6 @@
 ---
 title: 开发者支持
-parent: Odin1
+parent: 更多信息
 nav_order: 2
 ---
 

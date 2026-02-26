@@ -1,5 +1,5 @@
 ---
 title: 型号对比
-parent: Odin Series
+parent: 产品列表
 nav_order: 2
 ---

@@ -1,6 +1,6 @@
 ---
 title: Odin1快速启动
-parent: Odin1
+parent: 快速启动
 nav_order: 4
 ---
 

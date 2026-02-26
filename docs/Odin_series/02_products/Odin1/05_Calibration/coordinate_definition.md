@@ -1,6 +1,6 @@
 ---
 title: 坐标系定义
-parent: Odin1
+parent: 标定参数说明
 nav_order: 1
 ---
 
