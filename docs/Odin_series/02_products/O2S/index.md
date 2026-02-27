@@ -1,6 +1,6 @@
 ---
-title: Odin2
-parent: Odin Series
+title: O2S
+parent: Odin系列产品
 nav_order: 3
 has_children: false
 ---

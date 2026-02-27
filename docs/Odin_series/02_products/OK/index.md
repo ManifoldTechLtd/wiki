@@ -1,6 +1,6 @@
 ---
-title: OdinLite
-parent: Odin Series
+title: OK
+parent: Odin系列产品
 nav_order: 4
 has_children: false
 ---

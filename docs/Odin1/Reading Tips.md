@@ -1,6 +1,7 @@
 ---
 layout: default
 title: 阅读提示
+nav_exclude: true
 nav_order: 2
 ---
 

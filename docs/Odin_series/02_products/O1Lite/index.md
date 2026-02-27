@@ -1,6 +1,6 @@
 ---
 title: O1Lite
-parent: Odin Series
+parent: Odin系列产品
 nav_order: 2
 has_children: false
 ---

@@ -1,5 +1,6 @@
 ---
 title: "关注我们"
+nav_exclude: true
 nav_order: 12  # 较大数字确保在最后
 search_exclude: true  # 从搜索中排除
 ---
