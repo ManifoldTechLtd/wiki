@@ -1,5 +1,6 @@
 ---
 title: "关注我们"
+parent: Pocket2&Pro
 nav_order: 4  # 较大数字确保在最后
 search_exclude: true  # 从搜索中排除
 ---

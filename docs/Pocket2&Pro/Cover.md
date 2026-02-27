@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Pocket2&Pro 用户手册
+parent: Pocket2&Pro
 nav_order: 1
 ---
 

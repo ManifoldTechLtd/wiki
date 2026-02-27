@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 阅读提示
-nav_exclude: true
+parent: Odin1
 nav_order: 2
 ---
 

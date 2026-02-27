@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Odin1 用户手册
-nav_exclude: true
+parent: Odin1
 nav_order: 1
 ---
 
