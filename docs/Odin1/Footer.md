@@ -1,9 +1,11 @@
 ---
 title: "关注我们"
 parent: Odin1
-nav_order: 12  # 较大数字确保在最后
+nav_order: 13  # 较大数字确保在最后
 search_exclude: true  # 从搜索中排除
 ---
+
+<link rel="stylesheet" href="assets/css/footer.css">
 
 #  关注我们
 
