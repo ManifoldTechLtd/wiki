@@ -1,13 +1,16 @@
 ---
 layout: default
-title: Index
-nav_exclude: true
+title: Local Development Index Page
+nav_order: 1
 ---
 
-# Manifold Tech
+# Local Development Index Page
 
-Welcome to Manifold Tech Wiki!
+This index page is only visible if developing the theme as Jekyll is served
+from the repository top directory.
 
-![](Odin1/assets/img/index_picture.png) 
+The Docs folder index page can be reached following
+[this link](docs/index.html).
 
-
+In the normal GitHub Pages deployment the Docs index can be reached clicking
+on the home link at the top of the left navigation bar.

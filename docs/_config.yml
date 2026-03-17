@@ -1,16 +1,17 @@
-title: Read The Docs Jekyll Theme
+title: Manifold Tech Wiki
 description: Port of the Read the Docs theme to Jekyll to use with GitHub Pages.
-remote_theme: ManifoldTehLtd/wiki
 
-# Theme settings:
+# Development server config, needed to load some of the content
+webrick:
+  headers:
+    Access-Control-Allow-Origin: "*"
+
+# Theme settings
 site_author: Manifold Tech
-repo_url: "https://github.com/ManifoldTechLtd/wiki"
+repo_url: 'https://github.com/ManifoldTehLtd/wiki'
 edit_on_github: true
-github_docs_folder: true
+github_docs_folder: false
 sticky_navigation: true
-prev_next_buttons_location: bottom
+prev_next_buttons_location: both
 search_enabled: true
 hljs_style: github-gist
-
-plugins:
-  - jekyll-remote-theme
