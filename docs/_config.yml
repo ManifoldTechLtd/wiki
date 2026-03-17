@@ -1,17 +1,39 @@
 title: Manifold Tech Wiki
-description: Port of the Read the Docs theme to Jekyll to use with GitHub Pages.
+description: Official technical documentation for Manifold Tech products.
 
-# Development server config, needed to load some of the content
-webrick:
-  headers:
-    Access-Control-Allow-Origin: "*"
+remote_theme: just-the-docs/just-the-docs
 
-# Theme settings
-site_author: Manifold Tech
-repo_url: 'https://github.com/ManifoldTehLtd/wiki'
-edit_on_github: true
-github_docs_folder: false
-sticky_navigation: true
-prev_next_buttons_location: both
 search_enabled: true
-hljs_style: github-gist
+color_scheme: light
+heading_anchors: true
+
+aux_links:
+  "View on GitHub":
+    - "https://github.com/ManifoldTechLtd/wiki"
+
+baseurl: "/wiki"
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-include-cache
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+  - scope:
+      path: ""
+    values:
+      layout: default
+      nav_enabled: true
+      search_enabled: true
+
+  - scope:
+      path: "odin_series"
+    values:
+      layout: default
+      nav_enabled: true
+      search_enabled: true

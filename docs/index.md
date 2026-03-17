@@ -1,16 +1,18 @@
 ---
 layout: default
-title: Local Development Index Page
+title: Overview
 nav_order: 1
 ---
 
-# Local Development Index Page
+# Manifold Tech Wiki
 
-This index page is only visible if developing the theme as Jekyll is served
-from the repository top directory.
+Official technical documentation for Manifold Tech perception products.
 
-The Docs folder index page can be reached following
-[this link](docs/index.html).
+This documentation portal provides integration guides, API references, calibration instructions, and firmware information.
 
-In the normal GitHub Pages deployment the Docs index can be reached clicking
-on the home link at the top of the left navigation bar.
+---
+
+## Product Documentation
+
+- **[Odin Series](./odin_series/)**
+
