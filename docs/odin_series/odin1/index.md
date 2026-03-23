@@ -22,8 +22,9 @@ Odin1 is a compact perception system integrating LiDAR, RGB camera, and IMU for 
 - [5. 数据输出](5.%20Data%20output_)
 - [6. 建图与重定位建议调用流程](6.%20map%20and%20relocalizaiton%20api)
 - [7. Odin1 快速启动](7.%20Odin1%20Quick%20start)
-- [8. 重定位功能使用说明](8.%20Relocalization%20Usr%20Guide)
-- [9. 维护与故障排除](9.%20Maintenance)
-- [10. 技术参数](10.%20Technical%20Specifications_)
+- [8. 固件升级](8.%20Firmware%20Upgrade)
+- [9. 重定位功能使用说明](9.%20Relocalization%20Usr%20Guide)
+- [10. 维护与故障排除](10.%20Maintenance)
+- [11. 技术参数](11.%20Technical%20Specifications_)
 - [关注我们](Footer)
 
