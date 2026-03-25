@@ -7,19 +7,38 @@ nav_order: 2
 
 # 阅读提示
 
+本系列文档偏“上手实践”，建议你一边阅读一边在真实环境中操作验证。下面给出阅读方式与资源入口，帮助你更快建立完整路径。
+
 ## 符号说明
 
-⚠️重要注意事项     💡操作提示     📖术语解释
+- ⚠️ 重要注意事项：影响安全、稳定性或会导致常见踩坑的内容
+- 💡 操作提示：推荐做法、排障技巧、提升效率的小技巧
+- 📖 术语解释：关键概念、缩写或名词的快速说明
 
+## 建议阅读方式
 
+- **先跑通，再优化**
+  先按文档步骤把流程完整跑通（能编译、能启动、能看到预期现象），再回头做参数调优与工程化整理。
+- **每一章都留一个“可验证结果”**
+  阅读完一章，至少完成一个可验收的结果（例如：节点启动成功、话题数据正确、导航能跑一个简单目标点）。
+- **遇到不懂先记下来，不要卡住**
+  对术语或细节不确定时先做标记，继续推进主流程；等到你有了整体框架再回头补齐细节，效率更高。
+- **边做边记录你的环境与参数**
+  建议记录：系统版本、依赖版本、关键配置、启动命令、日志片段与问题现象，后续复现与排障会非常省时间。
 
-## 文档指引
+## 文档指引与资源入口
 
+### 开发者支持
 
+- Odin ROS Driver： [Odin\_ros\_driver](https://github.com/manifoldsdk/odin_ros_driver)
+- Odin Navigation Stack： [Odin-Nav-Stack](https://github.com/ManifoldTechLtd/Odin-Nav-Stack)
 
-* 开发者支持
-  
-  Odin ROS Driver下载链接：[Odin\_ros\_driver](https://github.com/manifoldsdk/odin_ros_driver)
+## 常见排查思路（建议收藏）
 
-  Odin Navigation Stack链接：[Odin-Nav-Stack](https://github.com/ManifoldTechLtd/Odin-Nav-Stack)
+- **先看日志与话题**
+  先确认节点是否正常启动、关键话题是否有数据、驱动运行终端是否有错误信息。
+- **再查配置与依赖**
+  重点检查启动文件参数及依赖包版本是否匹配。
+- **遇到问题并反馈问题**
+  在遇到某些特殊场景无法正常工作时，建议录制/odin1/cloud_raw && /odin1/imu && /odin1/image/compressed三个原始数据的bag包协助分析
 

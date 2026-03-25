@@ -18,6 +18,10 @@ plugins:
   - jekyll-seo-tag
   - jekyll-include-cache
 
+kramdown:
+  math_engine: mathjax
+  input: GFM
+
 defaults:
   - scope:
       path: ""

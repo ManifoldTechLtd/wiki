@@ -1,0 +1,121 @@
+<div id="translate">语言：</div>
+<script src="https://res.zvo.cn/translate/translate.js"></script>
+<script>
+  translate.setUseVersion2();
+  translate.language.setLocal('chinese_simplified');
+  translate.listener.start();
+  translate.execute();
+</script>
+<!-- BEGIN_MATHJAX_MERMAID -->
+<style>
+  .site-wrap {
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .side-bar {
+    left: 0 !important;
+  }
+
+  .site-header {
+    left: 0 !important;
+  }
+
+  body {
+    margin-left: 0 !important;
+  }
+</style>
+
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  };
+</script>
+
+<script>
+  (function () {
+    function loadScript(urls, onDone) {
+      var i = 0;
+      function tryNext() {
+        if (i >= urls.length) {
+          return;
+        }
+        var url = urls[i++];
+        var s = document.createElement('script');
+        s.src = url;
+        s.async = true;
+        s.onload = function () { onDone && onDone(); };
+        s.onerror = function () { tryNext(); };
+        document.head.appendChild(s);
+      }
+      tryNext();
+    }
+
+    function typesetMath() {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetClear && window.MathJax.typesetClear();
+        window.MathJax.typesetPromise();
+      }
+    }
+
+    loadScript([
+      'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js',
+      'https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js'
+    ], function () {
+      typesetMath();
+      setTimeout(typesetMath, 500);
+      setTimeout(typesetMath, 1500);
+    });
+
+    loadScript([
+      'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js',
+      'https://unpkg.com/mermaid@10/dist/mermaid.min.js'
+    ], function () {
+      if (window.mermaid) {
+        window.mermaid.initialize({ startOnLoad: false });
+      }
+    });
+
+    // If translate.js mutates DOM after load, re-typeset once more.
+    window.addEventListener('load', function () {
+      setTimeout(typesetMath, 2500);
+    });
+  })();
+</script>
+
+<script>
+  function renderMermaidFromCodeFences() {
+    var blocks = document.querySelectorAll('pre > code.language-mermaid');
+    blocks.forEach(function (code) {
+      var pre = code.parentElement;
+      var container = document.createElement('div');
+      container.className = 'mermaid';
+      container.textContent = code.textContent;
+      pre.parentElement.replaceChild(container, pre);
+    });
+
+    if (window.mermaid) {
+      window.mermaid.initialize({ startOnLoad: false });
+      window.mermaid.run({ querySelector: '.mermaid' });
+    }
+  }
+
+  window.addEventListener('load', function () {
+    renderMermaidFromCodeFences();
+  });
+</script>
+<!-- END_MATHJAX_MERMAID -->

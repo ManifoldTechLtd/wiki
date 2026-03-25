@@ -2,21 +2,21 @@
 title: Odin Series
 nav_order: 1
 has_children: true
+has_toc: false
 ---
 
-# Odin Series
+# Odin 系列
 
-The Odin Series is an integrated multi-sensor perception platform designed for robotics, autonomous vehicles, and industrial automation.
-
----
-
-## Models
-
-- **[Odin1](./odin1/)** — Multi-sensor perception system with LiDAR + RGB camera + IMU.
-  - [Documentation index](./odin1/)
+专为具身智能设备打造的高性能全场景空间记忆模组
 
 ---
 
-## Quick links
+## 模组
 
-- [Odin1 documentation index](./odin1/)
+- **[Odin1](./odin1/)** — 深度融合多传感器高性能硬件与MindSLAM算法，为具身智能和自动移动机器人提供**高性能、高集成、高鲁棒**的空间感知与记忆能力
+
+---
+
+## 文档指引
+
+- [Odin1 文档指引](./odin1/)
