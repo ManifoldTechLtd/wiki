@@ -1,0 +1,618 @@
+{"0": {
+    "doc": "产品概述",
+    "title": "1. 产品概述",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/1.%20Product%20Overview_.html#1-%E4%BA%A7%E5%93%81%E6%A6%82%E8%BF%B0",
+    
+    "relUrl": "/odin_series/odin1/1.%20Product%20Overview_.html#1-产品概述"
+  },"1": {
+    "doc": "产品概述",
+    "title": "1.1  产品简介",
+    "content": "MindPalace Odin1:全球首款空间记忆模组 . 深度融合LiDAR与视觉传感器，实现高精度、广视角的实时三维感知，内置MindSLAMTM高性能融合SLAM算法，实现持久空间记忆，打造大脑“海马体”级导航与认知。适合机器人、自主导航平台与智能边缘设备的快速集成与部署，可在室内外复杂环境中稳定运行。 . ",
+    "url": "/wiki/odin_series/odin1/1.%20Product%20Overview_.html#11--%E4%BA%A7%E5%93%81%E7%AE%80%E4%BB%8B",
+    
+    "relUrl": "/odin_series/odin1/1.%20Product%20Overview_.html#11--产品简介"
+  },"2": {
+    "doc": "产品概述",
+    "title": "1.2 外观尺寸",
+    "content": "产品外观 . 产品尺寸 . ",
+    "url": "/wiki/odin_series/odin1/1.%20Product%20Overview_.html#12-%E5%A4%96%E8%A7%82%E5%B0%BA%E5%AF%B8",
+    
+    "relUrl": "/odin_series/odin1/1.%20Product%20Overview_.html#12-外观尺寸"
+  },"3": {
+    "doc": "产品概述",
+    "title": "产品概述",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/1.%20Product%20Overview_.html",
+    
+    "relUrl": "/odin_series/odin1/1.%20Product%20Overview_.html"
+  },"4": {
+    "doc": "Odin1时间同步",
+    "title": "10. Odin1时间同步",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/10.%20Time%20Synchronization.html#10-odin1%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5",
+    
+    "relUrl": "/odin_series/odin1/10.%20Time%20Synchronization.html#10-odin1时间同步"
+  },"5": {
+    "doc": "Odin1时间同步",
+    "title": "1. 说明",
+    "content": ". | Odin1 目前使用开机时间作为系统时间，不方便进行二次开发 | Odin1 提供ntp-like(模拟ntp方式)时间软同步功能，使得Odin1和主机进行时间同步 | . ",
+    "url": "/wiki/odin_series/odin1/10.%20Time%20Synchronization.html#1-%E8%AF%B4%E6%98%8E",
+    
+    "relUrl": "/odin_series/odin1/10.%20Time%20Synchronization.html#1-说明"
+  },"6": {
+    "doc": "Odin1时间同步",
+    "title": "2. 使用方法",
+    "content": "在驱动/odin1_ros_driver/config/control_command.yaml文件中配置“use_host_ros_time: 2”： . # 0: use odin internal system time as data time stamp, typical and recommended; # 1: use host ros time (upon receive) as data time stamp, only use if you specifically require this setup, not recommended for most users # 2: align odin1 time to host time, timestamp is the sensor data reception time on host time axis use_host_ros_time: 2 . ",
+    "url": "/wiki/odin_series/odin1/10.%20Time%20Synchronization.html#2-%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95",
+    
+    "relUrl": "/odin_series/odin1/10.%20Time%20Synchronization.html#2-使用方法"
+  },"7": {
+    "doc": "Odin1时间同步",
+    "title": "3. 原理实现",
+    "content": "PC(host_sdk) 与 Odin1(liuyedao) 之间进行一次 ntp-like 的时间交互，记录 4 个时间戳： . | t0：主机发布时间 | t1：从机接收时间 | t2：从机发布时间 | t3：主机接收时间 | . 原理： . \\[T_{\\mathrm{delay}} = (t_3 - t_0) - (t_2 - t_1)\\] \\[T_{\\mathrm{offset}} = \\frac{(t_3 + t_0) - (t_2 + t_1)}{2}\\] （物理意义：T_o - T_offset） . 实现： . | delay和offset计算 . | 上位机心跳保温，携带发布时刻信息t0 | 下位机接受心跳保温后，缓存t0和接收时刻t1 | 下位机发布消息前，记录消息发布时刻 t2，将t0 t1 t2 打包在心跳应答包中 | 上位机接受到心跳应答包，记录接受时刻t3 | 根据公式计算 | . | 数据时间戳补偿 . | 增加30帧滑动时间窗口，进行补偿和延迟时间的平滑 | 若用户设置使用host时间，则将该补偿增加到，驱动发布的所有数据上 | . | . ",
+    "url": "/wiki/odin_series/odin1/10.%20Time%20Synchronization.html#3-%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0",
+    
+    "relUrl": "/odin_series/odin1/10.%20Time%20Synchronization.html#3-原理实现"
+  },"8": {
+    "doc": "Odin1时间同步",
+    "title": "Odin1时间同步",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/10.%20Time%20Synchronization.html",
+    
+    "relUrl": "/odin_series/odin1/10.%20Time%20Synchronization.html"
+  },"9": {
+    "doc": "维护与故障排除",
+    "title": "11. 维护与故障排除",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/11.%20Maintenance.html#11-%E7%BB%B4%E6%8A%A4%E4%B8%8E%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4",
+    
+    "relUrl": "/odin_series/odin1/11.%20Maintenance.html#11-维护与故障排除"
+  },"10": {
+    "doc": "维护与故障排除",
+    "title": "11.1 日常维护",
+    "content": ". | 清洁规范： | . | 使用气吹清除镜头灰尘 | 使用干净的软布擦拭设备外壳 | ⚠️禁止使用腐蚀性溶剂擦拭窗口玻璃，腐蚀性溶剂会破坏玻璃的表面镀膜；当腐蚀性溶剂从窗口玻璃边缘缝隙进入，会腐蚀玻璃的防水背胶，导致防水失效。禁用的腐蚀性溶剂包含但不限于：酒精、异丙醇、白电油、松节油等。 | . | 存储条件 | . | 温度：-20℃~55℃ | 湿度：&lt;85% RH | . | . ",
+    "url": "/wiki/odin_series/odin1/11.%20Maintenance.html#111-%E6%97%A5%E5%B8%B8%E7%BB%B4%E6%8A%A4",
+    
+    "relUrl": "/odin_series/odin1/11.%20Maintenance.html#111-日常维护"
+  },"11": {
+    "doc": "维护与故障排除",
+    "title": "维护与故障排除",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/11.%20Maintenance.html",
+    
+    "relUrl": "/odin_series/odin1/11.%20Maintenance.html"
+  },"12": {
+    "doc": "技术参数",
+    "title": "12. 技术参数",
+    "content": "| 分类 | 参数名称 | 规格/数值 | . | 深度模组 | 深度分辨率 | 240 * 180 | . |   | 测距范围(Max) | 30m@10%反射率(&lt;500lux) 70m@90%反射率(&lt;500lux) | . |   | 测距范围(Min) | 0.2m | . |   | 点频 | 最高700,000 pts/s | . |   | 测距精度 | ±3cm@1σ[1] | . |   | 视场角(FOV,水平X 垂直) | 120° H X 90° V | . |   | 角分辨率 | 0.5° x 0.5° | . |   | 激光波长 | 940 nm | . |   | 激光安全等级 | Class 1人眼安全 | . |   | 帧率 | 默认10FPS,最高15FPS | . | RGB相机模组 | 分辨率 | 1600 X 1296 | . |   | 曝光方式 | 全局曝光(Global Shutter) | . |   | FOV(HXV) | 129°H x 104°V x 173°D | . |   | image size | 1/2.9” | . |   | pixel size | 3um * 3um | . |   | frame rate | 10/15fps | . | 整机参数 | 内置SLAM定位精度 | ±5cm+1%[2] | . |   | 重量 | 约280g | . |   | 体积(LXWXD) | 约100x62x43(主体)/46(含航空插头) 单位:mm | . |   | 功耗 | 额定11W,峰值24W | . |   | 防护等级 | IP67 | . |   | 工作电压 | 9-26 V | . |   | 工作温度 | -20℃ ~ 55℃ | . |   | 存储温度 | -25℃ ~ 60℃ | . | 数据输出 | 点云 | 真彩SLAM/原始点云 | . |   | 照片 | 原始RGB图像 | . |   | IMU | 高频原始数据 | . |   | 位姿 | 高频旋转、位置数据 | . |   | 软件接口 | 提供开源SDK，支持ROS1/ROS2数据通信 | . 【1】 室内测试环境，在80% Lambertian反射板上连续20帧的数据计算Std精度值。5m条件下，+/-3cm@1sigma, 5-30米1sigma精度值&lt;1% 【2】 实验室条件下 . ",
+    "url": "/wiki/odin_series/odin1/12.%20Technical%20Specifications_.html#12-%E6%8A%80%E6%9C%AF%E5%8F%82%E6%95%B0",
+    
+    "relUrl": "/odin_series/odin1/12.%20Technical%20Specifications_.html#12-技术参数"
+  },"13": {
+    "doc": "技术参数",
+    "title": "技术参数",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/12.%20Technical%20Specifications_.html",
+    
+    "relUrl": "/odin_series/odin1/12.%20Technical%20Specifications_.html"
+  },"14": {
+    "doc": "FAQ",
+    "title": "13. 常见问题FAQ",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/13.%20FAQ.html#13-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98faq",
+    
+    "relUrl": "/odin_series/odin1/13.%20FAQ.html#13-常见问题faq"
+  },"15": {
+    "doc": "FAQ",
+    "title": "❓ Odin1支持的系统有哪些",
+    "content": "回答： Odin1支持x86架构和ARM架构Ubuntu 20.04 ROS1/ROS2、Ubuntu 22.04 ROS2等Linux系统。 . ",
+    "url": "/wiki/odin_series/odin1/13.%20FAQ.html#-odin1%E6%94%AF%E6%8C%81%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%9C%89%E5%93%AA%E4%BA%9B",
+    
+    "relUrl": "/odin_series/odin1/13.%20FAQ.html#-odin1支持的系统有哪些"
+  },"16": {
+    "doc": "FAQ",
+    "title": "❓ Odin1连接到电脑后运行驱动没有数据",
+    "content": "回答： . | 请检查设备是否供电正常，正常供电红灯常亮 | 输入lsusb查看设备是否被识别，设备id：2207：0019 | 检查/etc/udev/rules.d/99-odin1.rules文件是否存在，如果不存在请手动创建,如果存在请检查文件内容是否正确 | 重启udev服务：sudo udevadm control –reload-rules &amp;&amp; sudo udevadm trigger | 检查驱动中的Log信息是否出现版本过低的提示字样，如果有请更新固件，更新方法见固件升级 | . ",
+    "url": "/wiki/odin_series/odin1/13.%20FAQ.html#-odin1%E8%BF%9E%E6%8E%A5%E5%88%B0%E7%94%B5%E8%84%91%E5%90%8E%E8%BF%90%E8%A1%8C%E9%A9%B1%E5%8A%A8%E6%B2%A1%E6%9C%89%E6%95%B0%E6%8D%AE",
+    
+    "relUrl": "/odin_series/odin1/13.%20FAQ.html#-odin1连接到电脑后运行驱动没有数据"
+  },"17": {
+    "doc": "FAQ",
+    "title": "❓ Odin1和RTK一起使用的时候，RTK无法固定",
+    "content": "回答： . | USB3.0在工作时会产生宽频带电磁辐射，其中包含GNSS L1频段（1575.42 MHz）附近的噪声 | 建议降级为USB2.0或者使用屏蔽更好的连接线 | . ",
+    "url": "/wiki/odin_series/odin1/13.%20FAQ.html#-odin1%E5%92%8Crtk%E4%B8%80%E8%B5%B7%E4%BD%BF%E7%94%A8%E7%9A%84%E6%97%B6%E5%80%99rtk%E6%97%A0%E6%B3%95%E5%9B%BA%E5%AE%9A",
+    
+    "relUrl": "/odin_series/odin1/13.%20FAQ.html#-odin1和rtk一起使用的时候rtk无法固定"
+  },"18": {
+    "doc": "FAQ",
+    "title": "FAQ",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/13.%20FAQ.html",
+    
+    "relUrl": "/odin_series/odin1/13.%20FAQ.html"
+  },"19": {
+    "doc": "硬件说明",
+    "title": "2. 硬件说明",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/2.%20HW%20Description_.html#2-%E7%A1%AC%E4%BB%B6%E8%AF%B4%E6%98%8E",
+    
+    "relUrl": "/odin_series/odin1/2.%20HW%20Description_.html#2-硬件说明"
+  },"20": {
+    "doc": "硬件说明",
+    "title": "2.1 物理接口",
+    "content": ". | 序号 | 接口类型 | 线缆型号 | 功能描述 | . | 1 | 四芯航空插座 | FGG.0T系列推拉自锁插头 | 供电接口 | . | 2 | USB-C 3.0 | USB 3.0 | 高速数据输出 | . ",
+    "url": "/wiki/odin_series/odin1/2.%20HW%20Description_.html#21-%E7%89%A9%E7%90%86%E6%8E%A5%E5%8F%A3",
+    
+    "relUrl": "/odin_series/odin1/2.%20HW%20Description_.html#21-物理接口"
+  },"21": {
+    "doc": "硬件说明",
+    "title": "2.2 接口定义",
+    "content": ". | 四芯航空插座管脚 | 信号 | 属性 | 描述 | 线束颜色 | 功能 | . | 1 | Power+ | Power | DC 12–24V | 红(正极) | 电源线 | . | 2 | No Connection |   |   |   |   | . | 3 | GP IO | GP IO | 双向同步IO | 白 | GP IO（预留，暂未使用） | . | 4 | Ground | Power | Ground | 黑 (负极) | 电源线 | . ",
+    "url": "/wiki/odin_series/odin1/2.%20HW%20Description_.html#22-%E6%8E%A5%E5%8F%A3%E5%AE%9A%E4%B9%89",
+    
+    "relUrl": "/odin_series/odin1/2.%20HW%20Description_.html#22-接口定义"
+  },"22": {
+    "doc": "硬件说明",
+    "title": "2.3 核心部件",
+    "content": ". | 序号 | 部件 | . | 1 | 激光发射端(TX) | . | 2 | 激光接收端(RX) | . | 3 | RGB相机 | . ",
+    "url": "/wiki/odin_series/odin1/2.%20HW%20Description_.html#23-%E6%A0%B8%E5%BF%83%E9%83%A8%E4%BB%B6",
+    
+    "relUrl": "/odin_series/odin1/2.%20HW%20Description_.html#23-核心部件"
+  },"23": {
+    "doc": "硬件说明",
+    "title": "2.4 数模文件",
+    "content": ". | 下载 Odin1 数模文件（stp） | . ",
+    "url": "/wiki/odin_series/odin1/2.%20HW%20Description_.html#24-%E6%95%B0%E6%A8%A1%E6%96%87%E4%BB%B6",
+    
+    "relUrl": "/odin_series/odin1/2.%20HW%20Description_.html#24-数模文件"
+  },"24": {
+    "doc": "硬件说明",
+    "title": "硬件说明",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/2.%20HW%20Description_.html",
+    
+    "relUrl": "/odin_series/odin1/2.%20HW%20Description_.html"
+  },"25": {
+    "doc": "安装指南",
+    "title": "3. 安装指南",
+    "content": "正式安装Odin1前,请阅读以下注意事项: . | 清洁安装表面与窗口： | . | 安装前，务必清除安装位置和激光雷达光学窗口上的灰尘、油污等脏污。建议使用干净的气吹除尘，再用无绒布（如镜头布）沾少许清水轻轻擦拭窗口，确保完全清洁。残留污渍会影响测量精度。 | . | ⚠️确保视野无遮挡： | . | 安装时，传感器前方视场角（FOV）区域 (0.2米内) 绝对不允许有任何遮挡物。特别注意： 即使是透明的玻璃、亚克力板等，安装在传感器正前方也会显著干扰激光信号，导致性能下降。 | . | 灵活的安装方向（含优化建议）： | . | 本产品支持任意方向安装（包括倒装）。倒装时： 设备底部距物体至少 0.2 米，以保证最佳性能。 | 设备会自动适应安装姿态（如倒装、倾斜），内部传感器会进行校准。 | . | ⚠️禁止施加额外负载： | . | 设备的机身（尤其是散热外壳和光学窗口）不能承受额外重量或压力（例如在其上堆放物品或用力按压）。请仅通过设计好的安装接口（如底部的螺纹孔）进行固定。 | . | ⚠️保障散热空间： | . | 设备四周需留出足够的空间用于散热。要求： 设备本体与周围物体（如外壳内壁、线缆束等）的最小净空距离 ≥ 10mm，确保空气能顺畅流通，防止过热。 | . | 稳固安装： | . | 强烈建议将设备安装在结实的支架上，传感器下底部距离物体0.2米以上，以防遮挡视野。 | . ",
+    "url": "/wiki/odin_series/odin1/3.%20Installation%20Guide_.html#3-%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97",
+    
+    "relUrl": "/odin_series/odin1/3.%20Installation%20Guide_.html#3-安装指南"
+  },"26": {
+    "doc": "安装指南",
+    "title": "3.1 机械安装",
+    "content": "Odin1的底部有4个安装孔位+4个散热风扇安装孔位和侧部4个安装孔位。请根据下图所示的尺寸大小及安装孔位尺寸,将Odin1安装至合适位置。 . | 背部 | 底部 | . | | | . 有效视场角（FOV）范围： . Odin1的深度FOV为大约120°H × 90°V，如下图所示。安装时请注意FOV有效范围，避免遮挡FOV区域。 . | TX | RX | rgb | . | | | | . ",
+    "url": "/wiki/odin_series/odin1/3.%20Installation%20Guide_.html#31-%E6%9C%BA%E6%A2%B0%E5%AE%89%E8%A3%85",
+    
+    "relUrl": "/odin_series/odin1/3.%20Installation%20Guide_.html#31-机械安装"
+  },"27": {
+    "doc": "安装指南",
+    "title": "安装指南",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/3.%20Installation%20Guide_.html",
+    
+    "relUrl": "/odin_series/odin1/3.%20Installation%20Guide_.html"
+  },"28": {
+    "doc": "电源与连接",
+    "title": "4. 电源与连接",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/4.%20Power%20connection.html#4-%E7%94%B5%E6%BA%90%E4%B8%8E%E8%BF%9E%E6%8E%A5",
+    
+    "relUrl": "/odin_series/odin1/4.%20Power%20connection.html#4-电源与连接"
+  },"29": {
+    "doc": "电源与连接",
+    "title": "4.1 外部供电系统设计指南",
+    "content": ". | 电压范围要求 本设备支持 DC 9–24V 宽电压输入，建议使用12V/2A直流电源，需保证供电功率不低于15W，否则可能无法正常启动。在低温工况下，建议适当提升供电电压以保障启动可靠性。 | 电源适配注意事项 | . | 当通过航空插头直连电源时，必须确保电源输出电压 始终处于 9–24V 范围内。 | 使用延长线缆时需补偿线路压降，但最终输入电压不得超过 26V 上限。 | Odin出厂不标配适配器，用户需要自行解决供电问题。供电线DC接口型号为5521/5524。 | . | 电压浪涌防护警告 ⚠️ 电源线路上高于 26V 的电压波动（如：并联设备突发断电、电磁干扰等）可能导致设备永久性损坏，建议在供电回路中增加过压保护电路。 . | 功耗特性说明 . | . | 工作状态 | 功率特性 | . | 稳定运行 | ≤15W（典型值 11W） | . | 冷启动峰值 | 最大 15W（持续 ≤10秒） | . | 电源选型关键参数 根据设备 峰值电流 1.67A（@9V） 与 26V 耐压上限 特性，供电电源需满足： | . | 持续输出能力 ≥1.8A | 过压保护阈值 ≤26V | 推荐功率裕量 ≥25W | . ",
+    "url": "/wiki/odin_series/odin1/4.%20Power%20connection.html#41-%E5%A4%96%E9%83%A8%E4%BE%9B%E7%94%B5%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97",
+    
+    "relUrl": "/odin_series/odin1/4.%20Power%20connection.html#41-外部供电系统设计指南"
+  },"30": {
+    "doc": "电源与连接",
+    "title": "4.2 连接步骤",
+    "content": ". | 通过航空插头连接电源 | 连接USB到主机-PC（数据传输） | 上电自检 | . ",
+    "url": "/wiki/odin_series/odin1/4.%20Power%20connection.html#42-%E8%BF%9E%E6%8E%A5%E6%AD%A5%E9%AA%A4",
+    
+    "relUrl": "/odin_series/odin1/4.%20Power%20connection.html#42-连接步骤"
+  },"31": {
+    "doc": "电源与连接",
+    "title": "电源与连接",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/4.%20Power%20connection.html",
+    
+    "relUrl": "/odin_series/odin1/4.%20Power%20connection.html"
+  },"32": {
+    "doc": "数据输出",
+    "title": "5. 数据输出",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/5.%20Data%20output_.html#5-%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA",
+    
+    "relUrl": "/odin_series/odin1/5.%20Data%20output_.html#5-数据输出"
+  },"33": {
+    "doc": "数据输出",
+    "title": "5.1 坐标系定义",
+    "content": "Odin 1直角坐标的定义如下图所示，I 为imu坐标系，L为点云坐标系， C为相机坐标系。 . ",
+    "url": "/wiki/odin_series/odin1/5.%20Data%20output_.html#51-%E5%9D%90%E6%A0%87%E7%B3%BB%E5%AE%9A%E4%B9%89",
+    
+    "relUrl": "/odin_series/odin1/5.%20Data%20output_.html#51-坐标系定义"
+  },"34": {
+    "doc": "数据输出",
+    "title": "5.2 外参描述",
+    "content": "外参符号说明 . 下面使用 \\(\\mathbf{T}^{\\text{A}}_{\\text{B}}\\) 来表示坐标转换，具体含义为: . \\[\\mathbf{P}_{\\text{A}} = \\mathbf{T}^{\\text{A}}_{\\text{B}} \\cdot \\mathbf{P}_{\\text{B}}\\] 其中 \\(P_A\\) 和 \\(P_B\\) 分别表示物体在A坐标系和B坐标系下坐标。 . Camera - LiDAR . 外参 \\(\\mathbf{T}^{\\text{camera}}_{\\text{lidar}}\\) 不同机器存在差异，请在驱动程序启动后，在config/calib.yaml获取（Tcl_0），具体信息请查看驱动。 . IMU - LiDAR . 外参 \\(\\mathbf{T}^{\\text{imu}}_{\\text{lidar}}\\) 是固定值，数值如下： . \\[\\mathbf{T}^{\\text{imu}}_{\\text{lidar}} = \\begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; -0.02663 \\\\ 0 &amp; 1 &amp; 0 &amp; 0.03447 \\\\ 0 &amp; 0 &amp; 1 &amp; 0.02174 \\\\ 0 &amp; 0 &amp; 0 &amp; 1 \\end{bmatrix}\\] 其它 . | 如果需要 Camera 到 IMU 的外参，请根据上述自行计算。 | . ",
+    "url": "/wiki/odin_series/odin1/5.%20Data%20output_.html#52-%E5%A4%96%E5%8F%82%E6%8F%8F%E8%BF%B0",
+    
+    "relUrl": "/odin_series/odin1/5.%20Data%20output_.html#52-外参描述"
+  },"35": {
+    "doc": "数据输出",
+    "title": "5.3 内参说明",
+    "content": "内参我们主要讨论相机的内参，lidar的内参不考虑 . 5.3.1 Odin1 相机内参 . | 获取内参的方法：连接设备，运行驱动，会在/ws/src/odin1_ros_driver/config中生成calib.yaml文件，每个设备略有不同 | calib.yaml内容如下： | . #O1-P010100079 cam_num: 1 img_topic_0: /camera/rgb Tcl_0: [ -0.00745, -0.99997, -0.00018, 0.03127, -0.00938, 0.00025, -0.99996, 0.01817, 0.99993, -0.00745, -0.00938, -0.00955, 0, 0, 0, 1 ] cam_0: cam_model: FishPoly image_width: 1600 # 1920 image_height: 1296 # 1080 k2: 5.0379242441551616e-05 k3: -7.4415257914767799e-03 k4: -4.1365539417288134e-02 k5: 5.5346546592564667e-02 k6: -3.3479736619860797e-02 k7: 5.9355751390599035e-03 p1: 0. p2: 0. A11: 7.3735683773268692e+02 A12: -4.0977897450998052e-01 A22: 7.3729158717678535e+02 u0: 7.9437192080462398e+02 v0: 6.6625886729029014e+02 isFast: 0 numDiff: 3000 maxIncidentAngle: 120 . 5.3.2 相机模型描述 . Odin1 RGB 相机模型与内参 . 本文档描述 Odin1 RGB 相机的投影模型及内参参数，供工程参考。 . 1 相机投影模型 . Odin1 RGB 使用多项式鱼眼投影模型描述大视场成像。 . 去畸变后，该模型可简化为标准针孔模型。 . 2 多项式鱼眼模型 . 2.1 投影公式 . 给定相机坐标系下的三维点： . \\[\\mathbf{P_c} = (X, Y, Z)^T\\] 计算入射半径： . \\[r = \\sqrt{X^2 + Y^2}\\] 计算入射角： . \\[\\theta = \\arccos\\left(\\frac{Z}{\\|\\mathbf{P_c}\\|}\\right) = \\arccos\\left(\\frac{Z}{\\sqrt{X^2 + Y^2 + Z^2}}\\right)\\] 多项式径向映射（注意包含 $\\theta$ 线性项）： . \\[\\theta_d = \\theta + k_2\\theta^2 + k_3\\theta^3 + k_4\\theta^4 + k_5\\theta^5 + k_6\\theta^6 + k_7\\theta^7\\] 投影到畸变平面： . \\[x_d = \\frac{\\theta_d}{r} \\cdot X\\] \\[y_d = \\frac{\\theta_d}{r} \\cdot Y\\] . 2.2 仿射变换 . \\[\\begin{bmatrix} u \\\\ v \\end{bmatrix} = \\begin{bmatrix} A_{11} &amp; A_{12} \\\\ 0 &amp; A_{22} \\end{bmatrix} \\begin{bmatrix} x_d \\\\ y_d \\end{bmatrix} + \\begin{bmatrix} u_0 \\\\ v_0 \\end{bmatrix}\\] 参数说明 . | 参数 | 说明 | . | k2–k7 | 多项式畸变系数 | . | A11 | X 轴焦距（水平缩放） | . | A12 | 非正交补偿（skew） | . | A22 | Y 轴焦距（垂直缩放） | . | u0, v0 | 主点坐标 | . 切向畸变未建模： . \\[p_1 = p_2 = 0\\] . 2.3 去畸变后的针孔模型 . 去畸变后： . \\[u = f_x \\frac{X}{Z} + c_x\\] \\[v = f_y \\frac{Y}{Z} + c_y\\] 内参矩阵： . \\[K = \\begin{bmatrix} f_x &amp; 0 &amp; c_x \\\\ 0 &amp; f_y &amp; c_y \\\\ 0 &amp; 0 &amp; 1 \\end{bmatrix}\\] 去畸变后畸变系数为零。 . 2.4 坐标系 . Odin1 RGB 遵循 OpenCV 相机坐标系约定： . | X → 右 | Y → 下 | Z → 前 | . 右手坐标系。 . 2.5 工程注意事项 . | 去畸变不改变外参。 | 高精度重投影请使用多项式鱼眼模型。 | 检测、SLAM、融合等算法框架请使用去畸变后的针孔模型。 | 当 $\\theta \\to 0$ 时可能出现数值不稳定（$r \\to 0$ 导致除零）。 | . 2.6 总结 . Odin1 RGB 相机模型由以下两部分组成： . | 多项式鱼眼投影（原始模型） | 去畸变针孔表示（算法兼容模型） | . 请根据应用场景选择合适的模型。 . ",
+    "url": "/wiki/odin_series/odin1/5.%20Data%20output_.html#53-%E5%86%85%E5%8F%82%E8%AF%B4%E6%98%8E",
+    
+    "relUrl": "/odin_series/odin1/5.%20Data%20output_.html#53-内参说明"
+  },"36": {
+    "doc": "数据输出",
+    "title": "5.4 数据说明",
+    "content": ". | raw point cloud(odin1/cloud_raw) has the following fields: | . float32 x // X axis, in meters float32 y // Y axis, in meters float32 z // Z axis, in meters uint8 intensity // Reflectivity, range 0–255 uint16 confidence // Point confidence, actual value range from 0 to around 1300 in typical scene, higher value means more reliable. Recommanded filtering threshold is 30-35, should be adjusted accordingly. float32 offset_time // Time offset relative to the base timestamp unit: s . ",
+    "url": "/wiki/odin_series/odin1/5.%20Data%20output_.html#54-%E6%95%B0%E6%8D%AE%E8%AF%B4%E6%98%8E",
+    
+    "relUrl": "/odin_series/odin1/5.%20Data%20output_.html#54-数据说明"
+  },"37": {
+    "doc": "数据输出",
+    "title": "5.5 数据输出类型及 ROS Driver 获取链接",
+    "content": "odin_ros_driver 0.9.0 . ",
+    "url": "/wiki/odin_series/odin1/5.%20Data%20output_.html#55-%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA%E7%B1%BB%E5%9E%8B%E5%8F%8A-ros-driver-%E8%8E%B7%E5%8F%96%E9%93%BE%E6%8E%A5",
+    
+    "relUrl": "/odin_series/odin1/5.%20Data%20output_.html#55-数据输出类型及-ros-driver-获取链接"
+  },"38": {
+    "doc": "数据输出",
+    "title": "数据输出",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/5.%20Data%20output_.html",
+    
+    "relUrl": "/odin_series/odin1/5.%20Data%20output_.html"
+  },"39": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6. 建图与重定位建议调用流程",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#6-%E5%BB%BA%E5%9B%BE%E4%B8%8E%E9%87%8D%E5%AE%9A%E4%BD%8D%E5%BB%BA%E8%AE%AE%E8%B0%83%E7%94%A8%E6%B5%81%E7%A8%8B",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#6-建图与重定位建议调用流程"
+  },"40": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.1 文档说明",
+    "content": "本文档介绍典型场景下建议的建图 &amp; 重定位功能调用流程。 . ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#61-%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#61-文档说明"
+  },"41": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.2 概念说明",
+    "content": ". | 设备：Odin1 设备 | 主机：连接 Odin1 并运行上位机调用 API 的设备 | 设备运行模式：Odin1 提供【算法】和【传感器】两种主要运行模式 | 传感器运行模式：设备仅上传所有传感器原始数据 | 算法运行模式：Odin1 设备内部算法的运行模式，分别是里程计模式、SLAM 模式、和重定位模式 | 地图文件：Odin1 内部算法在 SLAM 模式下生成的特殊格式地图文件 | . ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#62-%E6%A6%82%E5%BF%B5%E8%AF%B4%E6%98%8E",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#62-概念说明"
+  },"42": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.3 整体流程",
+    "content": "建议将设备初始化开流后保持与设备连接，通过特定 API 对设备工作模式（raw / slam）、算法工作模式（odom / 建图 / 重定位）、以及特定数据流的开关进行控制，确保设备响应速度，避免与设备反复重连及设备内部反复重新初始化。 . ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#63-%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#63-整体流程"
+  },"43": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.4 具体流程",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#64-%E5%85%B7%E4%BD%93%E6%B5%81%E7%A8%8B",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#64-具体流程"
+  },"44": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.4.1 设备连接 &amp; 初始化",
+    "content": "// 初始化 sdk，准备与设备连接 lidar_system_init(lidar_device_callback_t cb); // lidar_device_callback 内处理设备连接： lidar_create_device(lidar_device_info_t *dev_info, device_handle *device); // 获取设备版本 lidar_get_version(device_handle device); // 获取标定文件 lidar_get_calib_file(device_handle device, const char* path); // 注册数据回调 lidar_register_stream_callback(odinDevice, data_callback_info); // 初始化设备 lidar_open_device(device_handle device); . ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#641-%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5--%E5%88%9D%E5%A7%8B%E5%8C%96",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#641-设备连接--初始化"
+  },"45": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.4.2 建图：设备连接 &amp; 初始化状态下，开始建图",
+    "content": "// 使能内部算法 int type = LIDAR_MODE_SLAM; lidar_set_mode(odinDevice, type); // 配置算法运行模式至 SLAM 模式: 将 \"map_mode\" 参数设置为 1 // \"map_mode\" 设置不同的值对应分别为 // 0: 正常里程计模式 // 1: 建图 SLAM 模式 // 2: 重定位模式 lidar_set_custom_parameter(device_handle device, const char* param_name, const void* value_data, size_t value_length); // 将保存地图标志位 \"save_map\" 参数初始化为 0 lidar_set_custom_parameter(device_handle device, const char* param_name, const void* value_data, size_t value_length); // 设备开流，算法开始运行，可以开始移动设备正常建图 lidar_start_stream(device_handle device, int type, uint32_t &amp;dtof_subframe_odr); . ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#642-%E5%BB%BA%E5%9B%BE%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5--%E5%88%9D%E5%A7%8B%E5%8C%96%E7%8A%B6%E6%80%81%E4%B8%8B%E5%BC%80%E5%A7%8B%E5%BB%BA%E5%9B%BE",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#642-建图设备连接--初始化状态下开始建图"
+  },"46": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.4.3 建图：设备连接 &amp; 初始化 &amp; 建图状态下，保存 &amp; 获取地图",
+    "content": "// 设备内部保存当前建图文件：将 \"save_map\" 参数设置为 1 lidar_set_custom_parameter(device_handle device, const char* param_name, const void* value_data, size_t value_length); // 查询建图文件是否保存完成：读取到 \"save_map\" 参数由 1 变 0 int value = 0; int result = lidar_get_custom_parameter(odinDevice, \"save_map\", &amp;value); // 当设备内部地图保存完成后，获取设备中的地图文件至主机 lidar_get_mapping_result(device_handle device, const char* dest_dir, const char* file_name); // 保存地图并不会停止建图，可选择继续运行并再次保存 &amp; 获取地图 . ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#643-%E5%BB%BA%E5%9B%BE%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5--%E5%88%9D%E5%A7%8B%E5%8C%96--%E5%BB%BA%E5%9B%BE%E7%8A%B6%E6%80%81%E4%B8%8B%E4%BF%9D%E5%AD%98--%E8%8E%B7%E5%8F%96%E5%9C%B0%E5%9B%BE",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#643-建图设备连接--初始化--建图状态下保存--获取地图"
+  },"47": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.4.4 建图：设备连接 &amp; 初始化 &amp; 建图状态下，取消建图",
+    "content": "// 将设备切换到传感器模式，保留原始传感器输出，关闭内部算法 int type = LIDAR_MODE_RAW; lidar_set_mode(odinDevice, type); // 如需完全停止内部算法和数据输出，调用以下 api // lidar_stop_stream(device_handle device, int type); // 重新执行 6.4.2 即可重新开始建图 . ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#644-%E5%BB%BA%E5%9B%BE%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5--%E5%88%9D%E5%A7%8B%E5%8C%96--%E5%BB%BA%E5%9B%BE%E7%8A%B6%E6%80%81%E4%B8%8B%E5%8F%96%E6%B6%88%E5%BB%BA%E5%9B%BE",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#644-建图设备连接--初始化--建图状态下取消建图"
+  },"48": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.4.5 重定位说明",
+    "content": "该模式要求 Odin1 在 SLAM 模式生成并上传的地图文件，用于传入设备运行重定位。 . ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#645-%E9%87%8D%E5%AE%9A%E4%BD%8D%E8%AF%B4%E6%98%8E",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#645-重定位说明"
+  },"49": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.4.6 重定位：设备连接 &amp; 初始化状态下，开始重定位",
+    "content": "// 配置算法运行模式至重定位模式: 将 \"map_mode\" 参数设置为 2 // \"map_mode\" 设置不同的值对应分别为 // 0: 里程计模式 // 1: SLAM 模式 // 2: 重定位模式 lidar_set_custom_parameter(device_handle device, const char* param_name, const void* value_data, size_t value_length); // 指定和传入重定位使用的地图文件，不传入则无法正常运行 lidar_set_relocalization_map(device_handle device, const char* abs_path); // 设备开流，算法开始运行 lidar_start_stream(device_handle device, int type, uint32_t &amp;dtof_subframe_odr); . ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#646-%E9%87%8D%E5%AE%9A%E4%BD%8D%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5--%E5%88%9D%E5%A7%8B%E5%8C%96%E7%8A%B6%E6%80%81%E4%B8%8B%E5%BC%80%E5%A7%8B%E9%87%8D%E5%AE%9A%E4%BD%8D",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#646-重定位设备连接--初始化状态下开始重定位"
+  },"50": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.4.7 重定位：设备连接 &amp; 初始化 &amp; 建图状态下，停止重定位",
+    "content": "// 将设备切换到传感器模式，保留原始传感器输出，关闭内部算法 int type = LIDAR_MODE_RAW; lidar_set_mode(odinDevice, type); // 如需完全停止内部算法和数据输出，调用以下 api // lidar_stop_stream(device_handle device, int type); // 重新执行 6.4.6 即可重新开始重定位 . ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#647-%E9%87%8D%E5%AE%9A%E4%BD%8D%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5--%E5%88%9D%E5%A7%8B%E5%8C%96--%E5%BB%BA%E5%9B%BE%E7%8A%B6%E6%80%81%E4%B8%8B%E5%81%9C%E6%AD%A2%E9%87%8D%E5%AE%9A%E4%BD%8D",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#647-重定位设备连接--初始化--建图状态下停止重定位"
+  },"51": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.5 流程图总结",
+    "content": ". ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#65-%E6%B5%81%E7%A8%8B%E5%9B%BE%E6%80%BB%E7%BB%93",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#65-流程图总结"
+  },"52": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "6.6 注意事项",
+    "content": "目前不支持动态切换设备运行模式和算法运行模式，如需切换请先停止算法，完成相关配置后重新启动算法。 . ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#66-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html#66-注意事项"
+  },"53": {
+    "doc": "建图与重定位建议调用流程",
+    "title": "建图与重定位建议调用流程",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html",
+    
+    "relUrl": "/odin_series/odin1/6.%20map%20and%20relocalizaiton%20api.html"
+  },"54": {
+    "doc": "Odin1快速启动",
+    "title": "7. Odin1 快速启动",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/7.%20Odin1%20Quick%20start.html#7-odin1-%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8",
+    
+    "relUrl": "/odin_series/odin1/7.%20Odin1%20Quick%20start.html#7-odin1-快速启动"
+  },"55": {
+    "doc": "Odin1快速启动",
+    "title": "7.1 硬件设备安装",
+    "content": "硬件组成：Odin主机、数据线、电源线（电源适配器需用户自行准备） PC端：需要安装ubuntu20.04 ROS1/ROS2或ubuntu22.04 ROS2环境 . ",
+    "url": "/wiki/odin_series/odin1/7.%20Odin1%20Quick%20start.html#71-%E7%A1%AC%E4%BB%B6%E8%AE%BE%E5%A4%87%E5%AE%89%E8%A3%85",
+    
+    "relUrl": "/odin_series/odin1/7.%20Odin1%20Quick%20start.html#71-硬件设备安装"
+  },"56": {
+    "doc": "Odin1快速启动",
+    "title": "7.2 设备连接PC",
+    "content": "lsusb # 2207：0019即为Odin USB设备号 Bus 002 Device 014: ID 2207:0019 Fuzhou Rockchip Electronics Company hawk . ",
+    "url": "/wiki/odin_series/odin1/7.%20Odin1%20Quick%20start.html#72-%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5pc",
+    
+    "relUrl": "/odin_series/odin1/7.%20Odin1%20Quick%20start.html#72-设备连接pc"
+  },"57": {
+    "doc": "Odin1快速启动",
+    "title": "7.3 获取驱动",
+    "content": "git clone https://github.com/manifoldsdk/odin_ros_driver.git . ",
+    "url": "/wiki/odin_series/odin1/7.%20Odin1%20Quick%20start.html#73-%E8%8E%B7%E5%8F%96%E9%A9%B1%E5%8A%A8",
+    
+    "relUrl": "/odin_series/odin1/7.%20Odin1%20Quick%20start.html#73-获取驱动"
+  },"58": {
+    "doc": "Odin1快速启动",
+    "title": "7.4 创建 udev rules",
+    "content": "sudo gedit /etc/udev/rules.d/99-odin-usb.rules # 将下述内容粘贴到99-odin-usb.rules文件中，保存 SUBSYSTEM==\"usb\", ATTR{idVendor}==\"2207\", ATTR{idProduct}==\"0019\", MODE=\"0666\", GROUP=\"plugdev\" # 重新加载并导入设备 sudo udevadm control --reload sudo udevadm trigger . ",
+    "url": "/wiki/odin_series/odin1/7.%20Odin1%20Quick%20start.html#74-%E5%88%9B%E5%BB%BA-udev-rules",
+    
+    "relUrl": "/odin_series/odin1/7.%20Odin1%20Quick%20start.html#74-创建-udev-rules"
+  },"59": {
+    "doc": "Odin1快速启动",
+    "title": "7.5 运行驱动",
+    "content": "📌 运行驱动之前请确保设备已正常通电并接入电脑 . mkdir -p catkin_ws/src # 手动将odin_ros_driver放到src文件夹中,$PATH为用户自己使用路径 cp -r $PATH/odin_ros_driver $PATH/catkin_ws/src # 驱动提供了编译脚本，路径为：catkin_ws/src/odin_ros_driver/script/ ./build_ros2.sh # ros1则运行build_ros.sh cd $PATH/catkin_ws source install/setup.bash ros2 launch odin_ros_driver odin1_ros2.launch.py . ",
+    "url": "/wiki/odin_series/odin1/7.%20Odin1%20Quick%20start.html#75-%E8%BF%90%E8%A1%8C%E9%A9%B1%E5%8A%A8",
+    
+    "relUrl": "/odin_series/odin1/7.%20Odin1%20Quick%20start.html#75-运行驱动"
+  },"60": {
+    "doc": "Odin1快速启动",
+    "title": "7.6 快速启动手册获取",
+    "content": ". | Odin1快速启动手册 | . ",
+    "url": "/wiki/odin_series/odin1/7.%20Odin1%20Quick%20start.html#76-%E5%BF%AB%E9%80%9F%E5%90%AF%E5%8A%A8%E6%89%8B%E5%86%8C%E8%8E%B7%E5%8F%96",
+    
+    "relUrl": "/odin_series/odin1/7.%20Odin1%20Quick%20start.html#76-快速启动手册获取"
+  },"61": {
+    "doc": "Odin1快速启动",
+    "title": "Odin1快速启动",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/7.%20Odin1%20Quick%20start.html",
+    
+    "relUrl": "/odin_series/odin1/7.%20Odin1%20Quick%20start.html"
+  },"62": {
+    "doc": "固件升级",
+    "title": "8. 固件升级",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/8.%20Firmware%20Upgrade.html#8-%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7",
+    
+    "relUrl": "/odin_series/odin1/8.%20Firmware%20Upgrade.html#8-固件升级"
+  },"63": {
+    "doc": "固件升级",
+    "title": "固件链接",
+    "content": "Odin1 0.10.0固件下载 . ",
+    "url": "/wiki/odin_series/odin1/8.%20Firmware%20Upgrade.html#%E5%9B%BA%E4%BB%B6%E9%93%BE%E6%8E%A5",
+    
+    "relUrl": "/odin_series/odin1/8.%20Firmware%20Upgrade.html#固件链接"
+  },"64": {
+    "doc": "固件升级",
+    "title": "固件更新时间",
+    "content": "2026-02-11 . ",
+    "url": "/wiki/odin_series/odin1/8.%20Firmware%20Upgrade.html#%E5%9B%BA%E4%BB%B6%E6%9B%B4%E6%96%B0%E6%97%B6%E9%97%B4",
+    
+    "relUrl": "/odin_series/odin1/8.%20Firmware%20Upgrade.html#固件更新时间"
+  },"65": {
+    "doc": "固件升级",
+    "title": "固件更新信息",
+    "content": ". | 增加摄像头和激光雷达切换帧率功能（10/14.5hz） | 增加里程计协方差输出 | 高冲击场景优化 | 优化回环检测和重定位，降低误匹配率 | 支持升级工具运行在ARM架构设备上 | . ",
+    "url": "/wiki/odin_series/odin1/8.%20Firmware%20Upgrade.html#%E5%9B%BA%E4%BB%B6%E6%9B%B4%E6%96%B0%E4%BF%A1%E6%81%AF",
+    
+    "relUrl": "/odin_series/odin1/8.%20Firmware%20Upgrade.html#固件更新信息"
+  },"66": {
+    "doc": "固件升级",
+    "title": "ROS Driver 更新信息",
+    "content": ". | 修改获取地图失败，其他命令处于锁定状态的问题 | 增加ros driver在yaml文件设置帧率的功能(100:10FPS 145:14.5FPS) | 增加ntp-like(模拟ntp方式)时间同步功能 | 增加 imu 数据保存功能（打开recorddata，支持cloudmind后处理） | 增加cloud_slam 投影到原始图片demo | . ",
+    "url": "/wiki/odin_series/odin1/8.%20Firmware%20Upgrade.html#ros-driver-%E6%9B%B4%E6%96%B0%E4%BF%A1%E6%81%AF",
+    
+    "relUrl": "/odin_series/odin1/8.%20Firmware%20Upgrade.html#ros-driver-更新信息"
+  },"67": {
+    "doc": "固件升级",
+    "title": "固件升级操作",
+    "content": "注意：升级过程中请勿运行驱动，运行过程中请勿断电 . | 通过链接下载固件 | 解压文件 | 执行升级脚本 ./odin1_firmware_update_tool_0.4.5_amd64_ubuntu22.04 odin1_firmware_update_0.10.0.tar.gz . 等待升级完成，设备会自动重启 . | . ",
+    "url": "/wiki/odin_series/odin1/8.%20Firmware%20Upgrade.html#%E5%9B%BA%E4%BB%B6%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C",
+    
+    "relUrl": "/odin_series/odin1/8.%20Firmware%20Upgrade.html#固件升级操作"
+  },"68": {
+    "doc": "固件升级",
+    "title": "固件升级",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/8.%20Firmware%20Upgrade.html",
+    
+    "relUrl": "/odin_series/odin1/8.%20Firmware%20Upgrade.html"
+  },"69": {
+    "doc": "重定位功能使用说明",
+    "title": "9. Odin1 重定位功能",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/9.%20Relocalization%20Usr%20Guide.html#9-odin1-%E9%87%8D%E5%AE%9A%E4%BD%8D%E5%8A%9F%E8%83%BD",
+    
+    "relUrl": "/odin_series/odin1/9.%20Relocalization%20Usr%20Guide.html#9-odin1-重定位功能"
+  },"70": {
+    "doc": "重定位功能使用说明",
+    "title": "9.1 说明",
+    "content": "Odin1目前支持三种使用模式：ODOM里程计模式、SLAM模式和Relocalization重定位模式。模式切换均通过修改/catkin_ws/src/odin_ros_driver/config/control_command.yaml文件中“custom_map_mode”参数进行配置 . ",
+    "url": "/wiki/odin_series/odin1/9.%20Relocalization%20Usr%20Guide.html#91-%E8%AF%B4%E6%98%8E",
+    
+    "relUrl": "/odin_series/odin1/9.%20Relocalization%20Usr%20Guide.html#91-说明"
+  },"71": {
+    "doc": "重定位功能使用说明",
+    "title": "9.2 使用教程",
+    "content": ". | step1: 设置“custom_map_mode=1”启用SLAM模式，开始录制地图，该模式下在录制结束时会进行回环检测。 . | step2: 当地图采集完成后请勿直接“Ctrl+c”退出驱动，需要另起终端进入/catkin_ws/src/odin_ros_driver路径下运行“./set_param.sh save_map 1”等待驱动运行终端提示地图保存完成后方可停止。此时会在用户指定目录下生成地图bin格式文件，如果用户未设置，则默认会以结束时间戳命名保存在map文件夹中。注：保存地图需要保证lsusb -v -d 2207:0019 | grep -i bcdusb看到的结果为3.2。 . | step3: 在control_command.yaml文件中修改“custom_map_mode=2”并设置地图保存路径（精确到文件后缀）。如：/home/hugo/git/odin_0.8.0/map/office.bin . | step4: 重新运行驱动，重定位成功可以看到终端提示“[INFO] [1769564323.183375282] [odom]: relocalization success!”，且/tf中出现/map坐标系。 . | . ",
+    "url": "/wiki/odin_series/odin1/9.%20Relocalization%20Usr%20Guide.html#92-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B",
+    
+    "relUrl": "/odin_series/odin1/9.%20Relocalization%20Usr%20Guide.html#92-使用教程"
+  },"72": {
+    "doc": "重定位功能使用说明",
+    "title": "重定位功能使用说明",
+    "content": " ",
+    "url": "/wiki/odin_series/odin1/9.%20Relocalization%20Usr%20Guide.html",
+    
+    "relUrl": "/odin_series/odin1/9.%20Relocalization%20Usr%20Guide.html"
+  },"73": {
+    "doc": "Odin1 用户手册",
+    "title": "Odin1 用户手册",
+    "content": "| 版本号 | 修改日期 | 更新内容 | . | v2.0 | 2026.3 | 增加时间同步说明 | . ",
+    "url": "/wiki/odin_series/odin1/Cover.html",
+    
+    "relUrl": "/odin_series/odin1/Cover.html"
+  },"74": {
+    "doc": "阅读提示",
+    "title": "阅读提示",
+    "content": "本系列文档偏“上手实践”，建议你一边阅读一边在真实环境中操作验证。下面给出阅读方式与资源入口，帮助你更快建立完整路径。 . ",
+    "url": "/wiki/odin_series/odin1/Reading%20Tips.html",
+    
+    "relUrl": "/odin_series/odin1/Reading%20Tips.html"
+  },"75": {
+    "doc": "阅读提示",
+    "title": "符号说明",
+    "content": ". | ⚠️ 重要注意事项：影响安全、稳定性或会导致常见踩坑的内容 | 💡 操作提示：推荐做法、排障技巧、提升效率的小技巧 | 📖 术语解释：关键概念、缩写或名词的快速说明 | . ",
+    "url": "/wiki/odin_series/odin1/Reading%20Tips.html#%E7%AC%A6%E5%8F%B7%E8%AF%B4%E6%98%8E",
+    
+    "relUrl": "/odin_series/odin1/Reading%20Tips.html#符号说明"
+  },"76": {
+    "doc": "阅读提示",
+    "title": "建议阅读方式",
+    "content": ". | 先跑通，再优化 先按文档步骤把流程完整跑通（能编译、能启动、能看到预期现象），再回头做参数调优与工程化整理。 | 每一章都留一个“可验证结果” 阅读完一章，至少完成一个可验收的结果（例如：节点启动成功、话题数据正确、导航能跑一个简单目标点）。 | 遇到不懂先记下来，不要卡住 对术语或细节不确定时先做标记，继续推进主流程；等到你有了整体框架再回头补齐细节，效率更高。 | 边做边记录你的环境与参数 建议记录：系统版本、依赖版本、关键配置、启动命令、日志片段与问题现象，后续复现与排障会非常省时间。 | . ",
+    "url": "/wiki/odin_series/odin1/Reading%20Tips.html#%E5%BB%BA%E8%AE%AE%E9%98%85%E8%AF%BB%E6%96%B9%E5%BC%8F",
+    
+    "relUrl": "/odin_series/odin1/Reading%20Tips.html#建议阅读方式"
+  },"77": {
+    "doc": "阅读提示",
+    "title": "文档指引与资源入口",
+    "content": "开发者支持 . | Odin ROS Driver： Odin_ros_driver | Odin Navigation Stack： Odin-Nav-Stack | . ",
+    "url": "/wiki/odin_series/odin1/Reading%20Tips.html#%E6%96%87%E6%A1%A3%E6%8C%87%E5%BC%95%E4%B8%8E%E8%B5%84%E6%BA%90%E5%85%A5%E5%8F%A3",
+    
+    "relUrl": "/odin_series/odin1/Reading%20Tips.html#文档指引与资源入口"
+  },"78": {
+    "doc": "阅读提示",
+    "title": "常见排查思路（建议收藏）",
+    "content": ". | 先看日志与话题 先确认节点是否正常启动、关键话题是否有数据、驱动运行终端是否有错误信息。 | 再查配置与依赖 重点检查启动文件参数及依赖包版本是否匹配。 | 遇到问题并反馈问题 在遇到某些特殊场景无法正常工作时，建议录制/odin1/cloud_raw &amp;&amp; /odin1/imu &amp;&amp; /odin1/image/compressed三个原始数据的bag包协助分析 | . ",
+    "url": "/wiki/odin_series/odin1/Reading%20Tips.html#%E5%B8%B8%E8%A7%81%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF%E5%BB%BA%E8%AE%AE%E6%94%B6%E8%97%8F",
+    
+    "relUrl": "/odin_series/odin1/Reading%20Tips.html#常见排查思路建议收藏"
+  },"79": {
+    "doc": "Odin1",
+    "title": "Odin1",
+    "content": ". | 超高性能空间感知:70m (90% 反射率)/30m (10% 反射率) 超远测距 | 120°×90° 超广视场角 | 最高 70 万点 / 秒高密度点云 | 1298P彩色全局曝光 | . | | 超鲁棒空间记忆:±5cm+1% 厘米级全局定位 | 最高 400Hz 高频位姿更新 | 暗光 / 玻璃 / 水面等复杂环境自适应 | . | | 小巧全能工业设计:约 280g 超轻重量 | 100×62×43mm 紧凑尺寸 | IP66 防尘防水 | 9-26V 宽电压适配 | 抗冲击（高达50G） | . | | 云端协同全闭环:无缝对接 MindCloud 平台 | 三维数据优化 / 拼接 / 3DGS生成 | 数字孪生 / 机器人仿真场景 | . | . ",
+    "url": "/wiki/odin_series/odin1/",
+    
+    "relUrl": "/odin_series/odin1/"
+  },"80": {
+    "doc": "Odin1",
+    "title": "Documentation Sections",
+    "content": ". | Odin1 用户手册 | 阅读提示 | 1. 产品概述 | 2. 硬件说明 | 3. 安装指南 | 4. 电源与连接 | 5. 数据输出 | 6. 建图与重定位建议调用流程 | 7. Odin1 快速启动 | 8. 固件升级 | 9. 重定位功能使用说明 | 10. 时间同步 | 11. 维护与故障排除 | 12. 技术参数 | 13. 常见问题FAQ | 关注我们 | . ",
+    "url": "/wiki/odin_series/odin1/#documentation-sections",
+    
+    "relUrl": "/odin_series/odin1/#documentation-sections"
+  },"81": {
+    "doc": "Odin Series",
+    "title": "Odin 系列",
+    "content": "专为具身智能设备打造的高性能全场景空间记忆模组 . ",
+    "url": "/wiki/odin_series/#odin-%E7%B3%BB%E5%88%97",
+    
+    "relUrl": "/odin_series/#odin-系列"
+  },"82": {
+    "doc": "Odin Series",
+    "title": "模组",
+    "content": ". | Odin1 — 深度融合多传感器高性能硬件与MindSLAM算法，为具身智能和自动移动机器人提供高性能、高集成、高鲁棒的空间感知与记忆能力 | . ",
+    "url": "/wiki/odin_series/#%E6%A8%A1%E7%BB%84",
+    
+    "relUrl": "/odin_series/#模组"
+  },"83": {
+    "doc": "Odin Series",
+    "title": "文档指引",
+    "content": ". | Odin1 文档指引 | . ",
+    "url": "/wiki/odin_series/#%E6%96%87%E6%A1%A3%E6%8C%87%E5%BC%95",
+    
+    "relUrl": "/odin_series/#文档指引"
+  },"84": {
+    "doc": "Odin Series",
+    "title": "Odin Series",
+    "content": " ",
+    "url": "/wiki/odin_series/",
+    
+    "relUrl": "/odin_series/"
+  },"85": {
+    "doc": "Overview",
+    "title": "Manifold Tech Wiki",
+    "content": "Official technical documentation for Manifold Tech perception products. This documentation portal provides integration guides, API references, calibration instructions, and firmware information. ",
+    "url": "/wiki/#manifold-tech-wiki",
+    
+    "relUrl": "/#manifold-tech-wiki"
+  },"86": {
+    "doc": "Overview",
+    "title": "Product Documentation",
+    "content": ". | Odin Series | . ",
+    "url": "/wiki/#product-documentation",
+    
+    "relUrl": "/#product-documentation"
+  },"87": {
+    "doc": "Overview",
+    "title": "Overview",
+    "content": " ",
+    "url": "/wiki/",
+    
+    "relUrl": "/"
+  }
+}
