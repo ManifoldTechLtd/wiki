@@ -2,7 +2,7 @@
 layout: default
 title: "关注我们"
 parent: Odin1
-nav_order: 14  # 较大数字确保在最后
+nav_order: 99  # 较大数字确保在最后
 search_exclude: true  # 从搜索中排除
 ---
 

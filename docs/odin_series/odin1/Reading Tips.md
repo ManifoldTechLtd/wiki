@@ -40,5 +40,5 @@ nav_order: 2
 - **再查配置与依赖**
   重点检查启动文件参数及依赖包版本是否匹配。
 - **遇到问题并反馈问题**
-  在遇到某些特殊场景无法正常工作时，建议录制/odin1/cloud_raw && /odin1/imu && /odin1/image/compressed三个原始数据的bag包协助分析
+  在遇到某些特殊场景无法正常工作时，建议录制/odin1/cloud_raw && /odin1/imu && /odin1/image/compressed三个原始数据的bag包及calib.yaml文件协助分析
 
