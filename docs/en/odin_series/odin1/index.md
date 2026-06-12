@@ -23,7 +23,7 @@ permalink: /en/odin_series/odin1/
 - [1. Product Overview](./1.%20Product%20Overview_.html)
 - [2. Hardware Description](./2.%20HW%20Description_.html)
 - [3. Installation Guide](./3.%20Installation%20Guide_.html)
-- [4. Power & Connection](./4.%20Power%20connection.html)
+- [4. Power and Connection](./4.%20Power%20connection.html)
 - [5. Data Output](./5.%20Data%20output_.html)
 - [6. Mapping & Relocalization API Workflow](./6.%20map%20and%20relocalizaiton%20api.html)
 - [7. Odin1 Quick Start (Ubuntu)](./7.%20Odin1%20Quick%20start%20for%20ubuntu.html)
