@@ -25,7 +25,7 @@ permalink: /en/odin_series/odin1/
 - [3. Installation Guide](./3.%20Installation%20Guide_.html)
 - [4. Power and Connection](./4.%20Power%20connection.html)
 - [5. Data Output](./5.%20Data%20output_.html)
-- [6. Mapping & Relocalization API Workflow](./6.%20map%20and%20relocalizaiton%20api.html)
+- [6. Mapping and Relocalization API Workflow](./6.%20map%20and%20relocalizaiton%20api.html)
 - [7. Odin1 Quick Start (Ubuntu)](./7.%20Odin1%20Quick%20start%20for%20ubuntu.html)
 - [8. OdinViewer Quick Start (Windows)](./8.%20OdinViewer%20Quick%20start%20for%20windows.html)
 - [9. Firmware Upgrade](./9.%20Firmware%20Upgrade.html)
