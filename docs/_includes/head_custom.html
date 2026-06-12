@@ -7,7 +7,18 @@
     font-size: 12px;
     line-height: 1;
   }
+  #translate-fallback {
+    color: #888;
+    font-style: italic;
+  }
 </style>
+
+<!-- 提前建立翻译服务连接，加快 translate.js 首包下载 -->
+<link rel="dns-prefetch" href="//res.zvo.cn">
+<link rel="dns-prefetch" href="//api.translate.zvo.cn">
+<link rel="preconnect" href="https://res.zvo.cn" crossorigin>
+<link rel="preconnect" href="https://api.translate.zvo.cn" crossorigin>
+<link rel="preload" href="https://res.zvo.cn/translate/translate.js" as="script">
 <!-- BEGIN_MATHJAX_MERMAID -->
 <style>
   .site-wrap {
