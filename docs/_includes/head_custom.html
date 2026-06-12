@@ -1,3 +1,11 @@
+<script>
+  (function () {
+    var p = location.pathname.replace(/\/+$/, '/');
+    if (p.indexOf('/wiki/en/') === 0 || p === '/wiki/en/') {
+      document.documentElement.classList.add('lang-en');
+    }
+  })();
+</script>
 <style>
   #lang-switch {
     position: fixed;
@@ -18,6 +26,9 @@
   #lang-switch a:hover { text-decoration: underline; }
   #lang-switch strong { color: #333; }
   #lang-switch .sep { color: #ccc; margin: 0 4px; }
+  /* On English pages, hide the auto-generated Chinese nav until our JS swaps it in. */
+  html.lang-en #site-nav { visibility: hidden; }
+  html.lang-en.lang-en-ready #site-nav { visibility: visible; }
 </style>
 
 <!-- BEGIN_MATHJAX_MERMAID -->
