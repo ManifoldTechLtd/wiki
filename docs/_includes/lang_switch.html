@@ -1,18 +1,25 @@
 {%- comment -%}
   Bilingual switcher.
-  - Chinese site is built with baseurl "/wiki"     and site.lang == "zh"
-  - English site is built with baseurl "/wiki/en"  and site.lang == "en"
-  page.url is the path *without* baseurl, e.g. "/odin_series/odin1/Cover.html",
-  identical between the two sites because docs_en mirrors docs.
+  - Both Chinese and English share the same Jekyll site (baseurl: /wiki).
+  - English mirror lives under docs/en/, so its URLs all start with "/en/".
+  - page.url here is the path *without* baseurl, e.g. "/odin_series/odin1/Cover.html"
+    or "/en/odin_series/odin1/Cover.html".
 {%- endcomment -%}
+{%- assign u = page.url -%}
+{%- assign head4 = u | slice: 0, 4 -%}
+{%- assign is_en = false -%}
+{%- if head4 == "/en/" or u == "/en" -%}{%- assign is_en = true -%}{%- endif -%}
 <div id="lang-switch">
-  {%- if site.lang == "en" -%}
-    <a href="/wiki{{ page.url }}" title="切换到中文">中文</a>
+  {%- if is_en -%}
+    {%- assign zh_url = u | replace_first: "/en", "" -%}
+    {%- if zh_url == "" -%}{%- assign zh_url = "/" -%}{%- endif -%}
+    <a href="{{ zh_url | relative_url }}" title="切换到中文">中文</a>
     <span class="sep">|</span>
     <strong>EN</strong>
   {%- else -%}
+    {%- assign en_url = "/en" | append: u -%}
     <strong>中文</strong>
     <span class="sep">|</span>
-    <a href="/wiki/en{{ page.url }}" title="Switch to English">EN</a>
+    <a href="{{ en_url | relative_url }}" title="Switch to English">EN</a>
   {%- endif -%}
 </div>
