@@ -6,34 +6,72 @@
       'https://res.zvo.cn/translate/translate.js',
       'https://cdn.jsdelivr.net/gh/xnx3/translate/translate.js'
     ];
+    var LS_KEY = 'wikiLang';                // localStorage 中存放用户语言偏好
+    var DEFAULT_LANG = 'english';           // 首次访问默认语言
+    var SOURCE_LANG = 'chinese_simplified'; // 源语言（不翻译）
+    var ALLOWED = 'chinese_simplified,english,japanese,german';
+
     var idx = 0;
-    var done = false;
+    var box = document.getElementById('translate');
+    var fb = document.getElementById('translate-fallback');
+
+    function readSavedLang() {
+      try { return localStorage.getItem(LS_KEY); } catch (_) { return null; }
+    }
+    function writeSavedLang(v) {
+      try { localStorage.setItem(LS_KEY, v); } catch (_) {}
+    }
+
+    // —— 鲁棒地隐藏 loading：只要 #translate 里出现 select，就认为加载成功 ——
+    if (box && window.MutationObserver) {
+      var ob = new MutationObserver(function () {
+        var sel = box.querySelector('select');
+        if (!sel) return;
+        if (fb) fb.style.display = 'none';
+        // 监听用户主动切换 → 持久化偏好
+        if (!sel.__bound) {
+          sel.__bound = true;
+          sel.addEventListener('change', function () {
+            writeSavedLang(sel.value);
+          });
+        }
+        ob.disconnect();
+      });
+      ob.observe(box, { childList: true, subtree: true });
+    }
+
+    function applyPreferredLang() {
+      var saved = readSavedLang() || DEFAULT_LANG;
+      // 源语言无需切换
+      if (saved === SOURCE_LANG) return;
+      try {
+        if (translate.changeLanguage) {
+          translate.changeLanguage(saved);
+        } else if (translate.selectLanguageTag && translate.selectLanguageTag.change) {
+          translate.selectLanguageTag.change(saved);
+        }
+      } catch (e) { console.warn('changeLanguage failed:', e); }
+    }
 
     function initTranslate() {
       if (typeof translate === 'undefined') return false;
-      try {
-        translate.setUseVersion2();
-        // 网页源语言（文档本身是中文撰写）
-        translate.language.setLocal('chinese_simplified');
-        // 只允许这 4 种语言：中、英、日、德
-        translate.selectLanguageTag.languages = 'chinese_simplified,english,japanese,german';
-        // 首次访问默认翻译为英文（已选过语言的用户会保持其选择）
-        translate.language.setDefaultTo('english');
-        translate.listener.start();
-        translate.execute();
-      } catch (e) {
-        console.warn('translate init failed:', e);
-        return false;
-      }
-      var fb = document.getElementById('translate-fallback');
-      if (fb) fb.style.display = 'none';
-      done = true;
+      try { translate.setUseVersion2(); } catch (_) {}
+      try { translate.language.setLocal(SOURCE_LANG); } catch (_) {}
+      try { translate.selectLanguageTag.languages = ALLOWED; } catch (_) {}
+      // setDefaultTo 仅首次访问生效；为了在跳页后仍保持英文，下面用 localStorage 主动切换
+      try { translate.language.setDefaultTo(DEFAULT_LANG); } catch (_) {}
+      try { translate.listener.start(); } catch (_) {}
+      try { translate.execute(); } catch (_) {}
+      // 强制应用用户上次选择（或默认英文）
+      applyPreferredLang();
+      // 再延迟一次，覆盖 translate.js 内部异步初始化
+      setTimeout(applyPreferredLang, 300);
+      setTimeout(applyPreferredLang, 1200);
       return true;
     }
 
     function loadNext() {
       if (idx >= URLS.length) {
-        var fb = document.getElementById('translate-fallback');
         if (fb) fb.textContent = 'unavailable (network)';
         return;
       }
@@ -41,18 +79,19 @@
       s.src = URLS[idx++];
       s.async = true;
       s.onload = function () {
-        if (!initTranslate()) loadNext();
+        if (typeof translate === 'undefined') { loadNext(); return; }
+        initTranslate();
       };
       s.onerror = function () { loadNext(); };
       document.head.appendChild(s);
     }
     loadNext();
 
-    // 8 秒兑底提示：如果还没初始化成功，提醒用户网络慢
+    // 8 秒兑底提示：仍未出现 select 时提示网络慢
     setTimeout(function () {
-      if (done) return;
-      var fb = document.getElementById('translate-fallback');
-      if (fb && fb.textContent.indexOf('loading') !== -1) {
+      if (!fb) return;
+      if (box && box.querySelector('select')) return;
+      if (/loading/.test(fb.textContent)) {
         fb.textContent = '(slow network, please wait…)';
       }
     }, 8000);
