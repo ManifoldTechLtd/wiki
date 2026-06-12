@@ -1,7 +1,3 @@
-# Translation cache & generated English mirror (built by CI)
-.translate-cache.json
-docs_en/
-
 # Jekyll
 _site/
 .jekyll-cache/
