@@ -32,7 +32,7 @@ permalink: /en/odin_series/odin1/
 - [10. Relocalization User Guide](./10.%20Relocalization%20Usr%20Guide.html)
 - [11. Relocalization Map Acquisition Guide](./11.%20Relocalization%20Map%20Acquisition%20Guide.html)
 - [12. Time Synchronization](./12.%20Time%20Synchronization.html)
-- [13. Maintenance](./13.%20Maintenance.html)
+- [13. Maintenance and Troubleshooting](./13.%20Maintenance.html)
 - [14. Technical Specifications](./14.%20Technical%20Specifications_.html)
 - [15. FAQ](./15.%20FAQ.html)
 - [Follow Us](./Footer.html)
