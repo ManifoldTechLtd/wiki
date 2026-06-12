@@ -1,0 +1,96 @@
+name: Build & Deploy (zh + en)
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: false
+          working-directory: wiki
+
+      - name: Install Jekyll deps
+        working-directory: wiki
+        run: |
+          bundle install
+
+      - name: Restore translation cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            wiki/.translate-cache.json
+            wiki/docs_en
+          key: translate-cache-${{ hashFiles('wiki/docs/**/*.md') }}
+          restore-keys: |
+            translate-cache-
+
+      - name: Translate docs/  →  docs_en/
+        working-directory: wiki
+        env:
+          DEEPL_API_KEY: ${{ secrets.DEEPL_API_KEY }}
+        run: |
+          python3 scripts/translate_md.py
+
+      - name: Prepare docs_en (copy _config.yml & _includes)
+        working-directory: wiki
+        run: |
+          cp docs/_config.yml docs_en/_config.yml
+          # ensure _includes is present in en build (so head/footer render)
+          rm -rf docs_en/_includes
+          cp -r docs/_includes docs_en/_includes
+          # adjust en config
+          sed -i 's|^baseurl: .*|baseurl: "/wiki/en"|' docs_en/_config.yml
+          sed -i 's|^title: .*|title: "Manifold Tech Wiki (English)"|' docs_en/_config.yml
+          # tell pages which language they are (used by lang_switch.html)
+          echo 'lang: en' >> docs_en/_config.yml
+          echo 'lang: zh' >> docs/_config.yml
+
+      - name: Build Chinese site  →  _site/
+        working-directory: wiki
+        run: |
+          bundle exec jekyll build -s docs -d _site
+
+      - name: Build English site  →  _site/en/
+        working-directory: wiki
+        run: |
+          bundle exec jekyll build -s docs_en -d _site/en --baseurl /wiki/en
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: wiki/_site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

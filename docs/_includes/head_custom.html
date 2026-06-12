@@ -1,24 +1,25 @@
 <style>
-  #translate {
+  #lang-switch {
     position: fixed;
     top: 8px;
     right: 12px;
     z-index: 9999;
-    font-size: 12px;
-    line-height: 1;
+    font-size: 13px;
+    line-height: 1.4;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 4px 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   }
-  #translate-fallback {
-    color: #888;
-    font-style: italic;
+  #lang-switch a {
+    color: #5d5dff;
+    text-decoration: none;
   }
+  #lang-switch a:hover { text-decoration: underline; }
+  #lang-switch strong { color: #333; }
+  #lang-switch .sep { color: #ccc; margin: 0 4px; }
 </style>
 
-<!-- 提前建立翻译服务连接，加快 translate.js 首包下载 -->
-<link rel="dns-prefetch" href="//res.zvo.cn">
-<link rel="dns-prefetch" href="//api.translate.zvo.cn">
-<link rel="preconnect" href="https://res.zvo.cn" crossorigin>
-<link rel="preconnect" href="https://api.translate.zvo.cn" crossorigin>
-<link rel="preload" href="https://res.zvo.cn/translate/translate.js" as="script">
 <!-- BEGIN_MATHJAX_MERMAID -->
 <style>
   .site-wrap {
