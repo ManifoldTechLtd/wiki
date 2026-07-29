@@ -6,8 +6,6 @@ nav_order: 99  # 较大数字确保在最后
 search_exclude: true  # 从搜索中排除
 ---
 
-<link rel="stylesheet" href="assets/css/footer.css">
-
 #  关注我们
 
 ## 获取最新动态资讯
