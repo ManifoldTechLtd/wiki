@@ -6,6 +6,30 @@
     }
   })();
 </script>
+<script>
+  /* Auto language redirect: non-Chinese browsers land on the English mirror.
+     A manual choice via the lang switcher (stored in localStorage) always wins. */
+  (function () {
+    try {
+      var BASE = '{{ site.baseurl }}';
+      var path = location.pathname;
+      var isEnPage = path.indexOf(BASE + '/en/') === 0 || path === BASE + '/en';
+      if (isEnPage) return;
+      var pref = localStorage.getItem('wiki_lang');
+      if (pref === 'zh') return;
+      if (pref !== 'en') {
+        var lang = ((navigator.languages && navigator.languages[0]) || navigator.language || '').toLowerCase();
+        if (lang.indexOf('zh') === 0) return;
+      }
+      var rest = path.slice(BASE.length);
+      if (rest === '' || rest === '/') { location.replace(BASE + '/en/'); return; }
+      var target = BASE + '/en' + rest + location.search + location.hash;
+      fetch(BASE + '/en' + rest, { method: 'HEAD' }).then(function (r) {
+        location.replace(r.ok ? target : BASE + '/en/');
+      }).catch(function () { location.replace(BASE + '/en/'); });
+    } catch (e) { /* localStorage disabled etc. — stay on Chinese */ }
+  })();
+</script>
 <style>
   #lang-switch {
     position: fixed;
