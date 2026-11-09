@@ -22,7 +22,7 @@ This documentation is hands-on by design — we recommend reading it while you w
 * Odin ROS driver
   - Odin ROS Driver: [Odin\_ros\_driver](https://github.com/manifoldsdk/odin_ros_driver)
 * Odin open-source navigation stack
-  - Odin Navigation Stack: [Odin-Nav-Stack](https://github.com/ManifoldTechLtd/Odin-Nav-Stack)
+  - Odin Navigation Stack: [Odin-Nav-Stack2](https://github.com/ManifoldTechLtd/Odin-Nav-Stack2)
 
 ## General Troubleshooting Workflow (worth bookmarking)
 

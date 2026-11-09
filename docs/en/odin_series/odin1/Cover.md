@@ -14,7 +14,7 @@ v2.0
 * Odin ROS driver download
   - Odin ROS Driver: [Odin\_ros\_driver](https://github.com/manifoldsdk/odin_ros_driver)
 * Odin open-source navigation stack download
-  - Odin Navigation Stack: [Odin-Nav-Stack](https://github.com/ManifoldTechLtd/Odin-Nav-Stack)
+  - Odin Navigation Stack: [Odin-Nav-Stack2](https://github.com/ManifoldTechLtd/Odin-Nav-Stack2)
 * MindCloud Studio download
   - MindCloud Studio: [MindCloud\_Studio](https://version.manifoldtech.cn/download/mcs?lang=en)
 
