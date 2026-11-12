@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 #
-# downloadnew.sh — 极简 SDK 平台检测与下载引导
+# download_lc_sdk.sh — 极简 SDK 平台检测与下载引导
 #
 # 运行后自动识别当前硬件平台，输出：
-#   - [Detection] 硬件/软件检测结果（CPU / GPU / NPU / 运行时版本号）
+#   - [Detection]     硬件/软件检测结果（CPU / GPU / NPU / 运行时版本号）
+#   - [Support]       推荐包与不支持原因（L4T 过旧 / glibc 过低 / Android / 非目标芯片等）
 #   - [Download links] 当前机器适用的 SDK 版本及下载页面链接
 #
 # 完全离线运行，无外部依赖，无配置项。
@@ -137,29 +138,9 @@ l4t_to_jetpack() {
     case "$1" in
         35) echo "JetPack 5.x" ;;
         36) echo "JetPack 6.x" ;;
+        38) echo "JetPack 7.x" ;;
         *)  echo "" ;;
     esac
-}
-
-detect_trt_version() {
-    if [ -f /usr/include/aarch64-linux-gnu/NvInferVersion.h ]; then
-        local major minor
-        major=$(grep 'NV_TENSORRT_MAJOR' /usr/include/aarch64-linux-gnu/NvInferVersion.h | head -1 | sed 's/[^0-9]//g')
-        minor=$(grep 'NV_TENSORRT_MINOR' /usr/include/aarch64-linux-gnu/NvInferVersion.h | head -1 | sed 's/[^0-9]//g')
-        if [ -n "$major" ] && [ -n "$minor" ]; then
-            echo "${major}.${minor}"
-            return
-        fi
-    fi
-    local lib
-    lib=$(find /usr/lib -name "libnvinv.so.*.*" 2>/dev/null | head -1)
-    if [ -n "$lib" ]; then
-        local ver
-        ver=$(basename "$lib" | sed -n 's/libnvinv\.so\.\([0-9.]*\)/\1/p')
-        echo "${ver%.*}"
-        return
-    fi
-    echo "none"
 }
 
 # detect_cuda_version: CUDA 版本（nvcc 或 /usr/local/cuda/version.txt）。
@@ -204,8 +185,9 @@ detect_openvino_soname() {
 
 soname_to_openvino_ver() {
     case "$1" in
-        2541) echo "20250401" ;;
+        2520) echo "20250200" ;;
         2540) echo "20250400" ;;
+        2541) echo "20250401" ;;
         *)    echo "" ;;
     esac
 }
@@ -262,6 +244,36 @@ is_rk3588() {
     return 1
 }
 
+# is_rockchip: Rockchip 平台（RK3588 以外的型号，如 RK3566/RK3399——无 NPU 加速包）
+is_rockchip() {
+    if [ -r /proc/device-tree/model ]; then
+        cat /proc/device-tree/model 2>/dev/null | tr -d '\0' | grep -qi "rockchip" && return 0
+    fi
+    return 1
+}
+
+# detect_glibc: 主机 glibc 版本（deb 最低要求 2.29，即 Ubuntu 20.04+）
+detect_glibc() {
+    local out ver
+    out="$(ldd --version 2>/dev/null || true)"
+    out="${out%%$'\n'*}"
+    ver="$(grep -o '[0-9][0-9.]*$' <<< "$out" || true)"
+    [ -n "$ver" ] && echo "$ver" || echo "0"
+}
+
+# is_android: Android 系统（deb 包不适用，应走 HMS 部署流程）
+is_android() {
+    [ -e /system/build.prop ] || command -v getprop >/dev/null 2>&1
+}
+
+# has_intel_igpu: 是否有 Intel 核显（OpenVINO GPU 加速的前提）
+has_intel_igpu() {
+    local out
+    command -v lspci >/dev/null 2>&1 || return 1
+    out="$(lspci 2>/dev/null || true)"
+    grep -qiE "VGA compatible controller.*Intel|Display controller.*Intel" <<< "$out"
+}
+
 is_intel() {
     grep -m1 "vendor_id" /proc/cpuinfo 2>/dev/null | grep -q "GenuineIntel"
 }
@@ -283,21 +295,30 @@ main() {
 
     # 推荐 + 可用 + 显示列表（动态构建，只保留当前机器适用的版本）
     local recommended="" available=""
-    local display=()
+    local display=() unsupported=()
+    local l4t rknn_ver
 
-    if $is_j; then
-        local trt_ver l4t
-        trt_ver="$(detect_trt_version)"
+    # ── 平台 → 推荐 slug / 不支持原因 ──
+    if is_android; then
+        unsupported+=("Android 系统：deb 安装包不适用（请走 HMS 部署流程）")
+    elif $is_j; then
         l4t="$(detect_l4t_version)"
         display+=("manifold-lc-sdk-arm64")
         available="manifold-lc-sdk-arm64"
-        case "$trt_ver" in
-            8.*)  recommended="manifold-lc-sdk-arm64-jetpack515"; display+=("$recommended") ;;
-            10.*) recommended="manifold-lc-sdk-arm64-jetpack621"; display+=("$recommended") ;;
-            *)    recommended="manifold-lc-sdk-arm64" ;;
+        # 按服务器实际 slug 映射（其下托管的是 dist/1028 的 ONNX bundle 包）：
+        #   jetpack515 → manifold-lc-sdk-arm64-jetpack5-nx_ubuntu20...-bundle.deb
+        #   jetpack621 → manifold-lc-sdk-arm64-jetpack6-agx_ubuntu22...-bundle.deb
+        #   jetpack7   → manifold-lc-sdk-arm64-jetpack7-thor_ubuntu24...-bundle.deb
+        case "$l4t" in
+            35) recommended="manifold-lc-sdk-arm64-jetpack515" ;;
+            36) recommended="manifold-lc-sdk-arm64-jetpack621" ;;
+            38) recommended="manifold-lc-sdk-arm64-jetpack7" ;;
+            *)  recommended="manifold-lc-sdk-arm64"
+                unsupported+=("JetPack 加速包：L4T R${l4t} 无对应版本（仅 CPU 版可用）")
+                ;;
         esac
+        [ "$recommended" = "manifold-lc-sdk-arm64" ] || display+=("$recommended")
     elif $is_rk; then
-        local rknn_ver
         rknn_ver="$(detect_rknn_version)"
         display+=("manifold-lc-sdk-arm64")
         available="manifold-lc-sdk-arm64"
@@ -307,33 +328,54 @@ main() {
         else
             recommended="manifold-lc-sdk-arm64"
         fi
+    elif is_rockchip; then
+        # RK3588 以外的 Rockchip（RK3566/RK3399 等）：无 NPU 加速包
+        display+=("manifold-lc-sdk-arm64")
+        available="manifold-lc-sdk-arm64"
+        recommended="manifold-lc-sdk-arm64"
+        unsupported+=("该 Rockchip 型号无 NPU 加速包（仅 CPU 版可用）")
     elif [ "$arch" = "amd64" ]; then
         display+=("manifold-lc-sdk-amd64")
         available="manifold-lc-sdk-amd64"
         if $is_in; then
-            local ov_ver
-            ov_ver="$(detect_openvino_version)"
-            if [ -n "$ov_ver" ]; then
-                recommended="manifold-lc-sdk-amd64-openvino${ov_ver}"
+            if has_intel_igpu; then
+                # 按服务器实际 slug：openvino20250401 项目当前托管的是
+                # manifold-lc-sdk-amd64-openvino20250200_2.1.0.deb（自包含 runtime，Ubuntu 20/22/24 通用）
+                recommended="manifold-lc-sdk-amd64-openvino20250401"
                 display+=("$recommended")
             else
                 recommended="manifold-lc-sdk-amd64"
+                unsupported+=("无 Intel 核显：OpenVINO 加速不可用（仅 CPU 版）")
             fi
         else
             recommended="manifold-lc-sdk-amd64"
+            unsupported+=("非 Intel CPU：OpenVINO 加速包不支持（仅 CPU 版可用）")
         fi
-    else
+        if [ "$recommended" = "manifold-lc-sdk-amd64" ] && command -v nvidia-smi >/dev/null 2>&1; then
+            unsupported+=("NVIDIA 独显：x86 无专用加速包（仅 CPU 版可用）")
+        fi
+    elif [ "$arch" = "arm64" ]; then
+        display+=("manifold-lc-sdk-arm64")
+        available="manifold-lc-sdk-arm64"
         recommended="manifold-lc-sdk-arm64"
-        display+=("$recommended")
+    else
+        unsupported+=("未知架构: $(uname -m)")
+    fi
+
+    # ── glibc 基线：deb 最低要求 glibc 2.29（Ubuntu 20.04+）──
+    local glibc_ver
+    glibc_ver="$(detect_glibc)"
+    if [ -n "$recommended" ] && [ "$(printf '2.29\n%s\n' "$glibc_ver" | sort -V | head -1)" != "2.29" ]; then
+        unsupported+=("系统 glibc ${glibc_ver} 过低（deb 需 Ubuntu 20.04+ / glibc ≥ 2.29）")
+        recommended=""
     fi
 
     # ---- 采集检测明细（有则显示） ----
-    local gpu npu cuda_ver jetpack trt_ver l4t rknn_ver ov_ver
+    local gpu npu cuda_ver jetpack l4t rknn_ver ov_ver
     gpu="$(detect_gpu)"
     npu="$(detect_npu)"
     cuda_ver="$(detect_cuda_version)"
     l4t="$(detect_l4t_version)"
-    trt_ver="$(detect_trt_version)"
     rknn_ver="$(detect_rknn_version)"
     ov_ver="$(detect_openvino_version)"
     jetpack="$(l4t_to_jetpack "$l4t")"
@@ -347,7 +389,7 @@ main() {
     echo "[Detection]"
 
     local hw_label="$model"
-    [ "$hw_label" = "unknown" ] && hw_label="$cpu_vendor $arch"
+    { [ -z "$hw_label" ] || [ "$hw_label" = "unknown" ]; } && hw_label="$cpu_vendor $arch"
     printf '  %-10s: %s\n' "Hardware" "$hw_label"
     printf '  %-10s: %s (%s)\n' "CPU" "$cpu_model" "$arch"
 
@@ -355,25 +397,40 @@ main() {
     [ -n "$gpu" ] && printf '  %-10s: %s\n' "GPU" "$gpu"
     [ -n "$npu" ] && printf '  %-10s: %s\n' "NPU" "$npu"
     [ "$l4t" != "none" ] && printf '  %-10s: R%s (%s)\n' "L4T" "$l4t" "${jetpack:-unknown}"
-    [ "$trt_ver" != "none" ] && printf '  %-10s: %s\n' "TensorRT" "$trt_ver"
     [ -n "$cuda_ver" ] && printf '  %-10s: %s\n' "CUDA" "$cuda_ver"
     [ "$rknn_ver" != "none" ] && printf '  %-10s: %s\n' "RKNN" "$rknn_ver"
     [ -n "$ov_ver" ] && printf '  %-10s: %s\n' "OpenVINO" "$ov_ver"
 
     echo ""
+    echo "[Support]"
+    if [ -n "$recommended" ]; then
+        printf '  %-14s: %s\n' "Recommended" "$recommended"
+    else
+        printf '  %-14s: %s\n' "Recommended" "NONE（无可用 SDK 包）"
+    fi
+    local reason
+    for reason in "${unsupported[@]}"; do
+        printf '  %-14s: %s\n' "Not supported" "$reason"
+    done
+
+    echo ""
     echo "[Download links]"
 
-    local slug
-    for slug in "${display[@]}"; do
-        if [ "$slug" = "$recommended" ]; then
-            printf '  \342\227\217 %s   RECOMMENDED\n' "$slug"
-        elif [ "$slug" = "$available" ]; then
-            printf '  \342\227\213 %s   AVAILABLE\n' "$slug"
-        else
-            printf '    %s\n' "$slug"
-        fi
-        echo "      ${WEB_BASE}/download/${slug}"
-    done
+    if [ -z "$recommended" ]; then
+        echo "  (无适用下载链接 — 见上方 [Support])"
+    else
+        local slug
+        for slug in "${display[@]}"; do
+            if [ "$slug" = "$recommended" ]; then
+                printf '  \342\227\217 %s   RECOMMENDED\n' "$slug"
+            elif [ "$slug" = "$available" ]; then
+                printf '  \342\227\213 %s   AVAILABLE\n' "$slug"
+            else
+                printf '    %s\n' "$slug"
+            fi
+            echo "      ${WEB_BASE}/download/${slug}"
+        done
+    fi
 
     echo "========================================"
     echo ""
