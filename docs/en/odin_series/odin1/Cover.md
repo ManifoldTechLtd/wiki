@@ -17,6 +17,8 @@ v2.0
   - Odin Navigation Stack: [Odin-Nav-Stack2](https://github.com/ManifoldTechLtd/Odin-Nav-Stack2)
 * MindCloud Studio download
   - MindCloud Studio: [MindCloud\_Studio](https://version.manifoldtech.cn/download/mcs?lang=en)
+* Odin1 firmware download
+  - Odin1 Firmware: [Odin1 Firmware](https://version.manifoldtech.cn/download/o1)
 
 ---
 

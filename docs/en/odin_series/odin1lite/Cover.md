@@ -27,6 +27,15 @@ Welcome to the official MindPalace **Odin1 Lite** Wiki. This documentation cover
 
 ---
 
+## Resources
+
+| Resource | How to obtain |
+|:--|:--|
+| Driver repository (ROS1 / ROS2) | [odin\_ros\_driver2](https://git.manifoldtech.cn/manifoldtech-sdk/odin_ros_driver2) — requires an official GitLab account; see [7. Odin1 Lite Quick Start (Ubuntu)](./7.%20Odin1Lite%20Quick%20start%20for%20ubuntu.html) for the application process |
+| Firmware package | [Odin1 Lite Firmware Download](https://version.manifoldtech.cn/download/o1l) — see [8. Firmware Upgrade](./8.%20Firmware%20Upgrade.html) for upgrade steps |
+
+---
+
 ## Documentation Sections
 
 | Chapter | Page |

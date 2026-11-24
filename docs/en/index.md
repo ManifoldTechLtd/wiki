@@ -20,4 +20,11 @@ This documentation portal provides integration guides, API references, calibrati
 
 ---
 
+## Firmware Download
+
+- [Odin1 Firmware](https://version.manifoldtech.cn/download/o1)
+- [Odin1 Lite Firmware](https://version.manifoldtech.cn/download/o1l)
+
+---
+
 > 🌐 You can switch back to Chinese any time via the **中文 | EN** toggle at the top-right corner.
