@@ -17,4 +17,6 @@ v2.0
   - Odin Navigation Stack： [Odin-Nav-Stack2](https://github.com/ManifoldTechLtd/Odin-Nav-Stack2)
 * MindCloudStudio获取链接
   - MindCloudStudio:  [MindCloud_Studio](https://version.manifoldtech.cn/download/mcs?lang=zh)
+* Odin1固件获取链接
+  - Odin1 Firmware： [Odin1 固件下载](https://version.manifoldtech.cn/download/o1)
 

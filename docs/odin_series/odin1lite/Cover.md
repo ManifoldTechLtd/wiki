@@ -27,6 +27,15 @@ nav_order: 1
 
 ---
 
+## 资源获取
+
+| 资源 | 获取方式 |
+|:--|:--|
+| 驱动仓库（ROS1 / ROS2） | [odin\_ros\_driver2](https://git.manifoldtech.cn/manifoldtech-sdk/odin_ros_driver2)，需官方 GitLab 账号，申请流程见 [7. Odin1 Lite 快速启动（Ubuntu）](7.%20Odin1Lite%20Quick%20start%20for%20ubuntu) |
+| 固件包 | [Odin1 Lite 固件下载](https://version.manifoldtech.cn/download/o1l)，升级步骤见 [8. 固件升级](8.%20Firmware%20Upgrade) |
+
+---
+
 ## 文档目录
 
 | 章节 | 页面 |

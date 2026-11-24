@@ -16,3 +16,10 @@ This documentation portal provides integration guides, API references, calibrati
 
 - **[Odin Series](./odin_series/)**
 
+---
+
+## 固件下载
+
+- [Odin1 固件下载](https://version.manifoldtech.cn/download/o1)
+- [Odin1 Lite 固件下载](https://version.manifoldtech.cn/download/o1l)
+
